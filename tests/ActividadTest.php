@@ -53,9 +53,9 @@ class ActividadTest extends TestCase
              ->type('pesa','searchText')
              ->press('Buscar')
              ->seeInElement("table",'pesa')
-             ->type('Zumba','searchText')
+             ->type('Telas','searchText')
              ->press('Buscar')
-             ->dontSeeInElement("table",'Zumba');
+             ->dontSeeInElement("table",'Telas');
             
     }
 
