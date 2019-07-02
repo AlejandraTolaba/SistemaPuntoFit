@@ -4,6 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use sisPuntoFit\Actividad;
+use sisPuntoFit\PlanActividad;
 
 class ActividadTest extends TestCase
 {
@@ -20,17 +21,22 @@ class ActividadTest extends TestCase
     {
         $this->visit('actividad/create')
             ->see('Nueva Actividad')
-            ->type('pesa','nombre')
-            /*->see('Planes')
-             ->see('1 día')
-            ->see('8 días')
-            ->see('12 día')
-            ->see('20 días') 
-            ->see('Precio')
+            ->type('jv','nombre')
+            ->see('Planes')
+            ->see('1 clase')
+            ->see('8 clases')
+            ->see('12 clases')
+            ->see('20 clases') 
             //->select('')
-            ->check('1 día','nombreplan')
-            ->type(80,'precio')
-            ->check('20 días')*/
+            ->select('on','check1')
+            //->enable('precio1')
+            ->type(80,'precio1')
+           /*  ->select('on','check2')
+            ->type(80,'precio2')
+             *//* ->select('on','check3')
+            ->type('80','precio3')
+            ->select('on','check4')
+            ->type('80','precio4') */
             ->see('Guardar')
             ->see('Cancelar')
             ->press('Guardar')
@@ -40,10 +46,10 @@ class ActividadTest extends TestCase
             ->see('estado')
             ->see('Editar')
             ->see('Eliminar');
-        $this->seeInDatabase('actividad', [
-                'nombre'=>'pesa',
+        /* $this->seeInDatabase('planactividad', [
+                'nombre'=>'danzas',
                 'estado'=>'activa'
-                ]);
+                ]); */
     }
 
     public function test_buscar_actividad_en_lista()
@@ -58,6 +64,7 @@ class ActividadTest extends TestCase
              ->dontSeeInElement("table",'Telas');
             
     }
+
 
 
 }

@@ -99,7 +99,8 @@ return [
     */
     'attributes' => [
         'nombre' => 'Nombre',
-        'telefono_celular' => 'Teléfono - Celular'
+        'telefono_celular' => 'Teléfono - Celular',
+        'precio' => 'Precio',
     ],
 ];
 

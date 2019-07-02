@@ -100,21 +100,16 @@
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-users"></i>
                 <span>Profesores</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
             <li class="treeview">
-              <a href="#">
+              <a href="{{url('alumno/')}}">
                 <i class="fa fa-heart"></i>
                 <span>Alumnos</span>
-                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i> Inscripción</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> </a></li>
-              </ul>
             </li>
                        
             <li class="treeview">
@@ -171,22 +166,9 @@
           
           <div class="row">
             <div class="col-md-12">
-              <div class="box box-success"> <!-- box-solid -->
-                
-                <!-- /.box-header -->
-                <div class="box-body">
-                  	<div class="row">
-	                  	<div class="col-md-12">
-		                          <!--Contenido-->
-                                    @yield('contenido')
-		                          <!--Fin Contenido-->
-                           </div>
-                        </div>
-		                    
-                  		</div>
-                  	</div><!-- /.row -->
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
+                  <!--Contenido-->
+                        @yield('contenido')
+                  <!--Fin Contenido-->
             </div><!-- /.col -->
           </div><!-- /.row -->
 
