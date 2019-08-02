@@ -11,4 +11,6 @@ class PlanActividad extends Model
     public $timestamps = false;
 
     protected $fillable= ['idactividad','idplan','precio'];
+
+    
 }

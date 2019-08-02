@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,42 @@ Route::get('/', function () {
 });
 
 Route::resource('actividad','ActividadController');
-Route::get('alumno', 'AlumnoController@create');
-Route::post('alumno', 'AlumnoController@store');
+Route::resource('alumno','AlumnoController');
+
+Route::resource('profesor','ProfesorController');
+
+Route::get('alumno/inscripcion/create/{idalumno}','InscripcionController@create');
+Route::post('alumno/inscripcion/create/{idalumno}','InscripcionController@store');
+Route::get('alumno/inscripcion/{idalumno}','InscripcionController@index');
+
+Route::post('actividad/plan/create','PlanController@create');
+Route::post('actividad/plan/create','PlanController@store');
+
+Route::post('actividad/create','ActividadController@store');
+
+Route::get('asistencia','InscripcionController@buscar');
+Route::get('asistencia/mostrarAlumno','InscripcionController@mostrarAlumno');
+Route::get('asistencia/cambiarCantidad/{idinscripcion}','InscripcionController@updateCantidad');
+
+Route::get('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@create');
+Route::post('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@store');
+
+Route::get('dropdown', function(){
+	$id = Input::get('option');
+	//dd($id);
+	$planes = DB::table('plan as p')
+			->join('plan_actividad as pa','pa.idplan','=','p.idplan')
+			->join('actividad as a','pa.idactividad','=','a.idactividad')
+			->where ('pa.idactividad','=', $id)
+			->lists('p.nombre', DB::raw('CONCAT(p.idplan,"_",precio) as plan'));
+	return $planes;
+	//dd($planes);
+});
+
+
+Route::post('actividad/{idactividad}/plan/create/','PlanController@store');
+
+Route::patch('actividad/{idactividad}/edit/','ActividadController@update');
+
+Route::get('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionController@mostrarInscripcion');
+Route::post('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionController@actualizarSaldo');

@@ -7,21 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
     protected $table="plan";
-    protected $fillable= ['nombre','estado'];
+    protected $primaryKey= 'idplan';
 
-    public function actividades(){
-    	return $this->belongsToMany('sisPuntoFit\Actividad')->withTimestamps();
+    public $timestamps = false;
 
-    }
-
-    public function scopeSearchPlan($query,$nombre){
-		return $query->where('nombre','=',$nombre);
-
-	}
-
-	public function scopeSearchEventP($query,$nombre){
-		
-		return $query->where('nombre','LIKE',"%".$nombre."%");
-
-	}
+    protected $fillable= ['nombre','cantidad_clases'];
+   
 }

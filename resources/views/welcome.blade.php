@@ -41,5 +41,12 @@
                 <div class="title">Laravel 5</div>
             </div>
         </div>
+        
+        <script src="{{asset('js/jQuery-2.1.4.min.js')}}"> //incluyo jquery
+        <script>
+            $('.title').append('Jquery is included')
+        </script>
+        </script>
+        
     </body>
 </html>

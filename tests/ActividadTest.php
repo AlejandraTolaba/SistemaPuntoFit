@@ -21,22 +21,17 @@ class ActividadTest extends TestCase
     {
         $this->visit('actividad/create')
             ->see('Nueva Actividad')
-            ->type('jv','nombre')
-            ->see('Planes')
+            ->type('str','nombre')
+            /* ->see('Planes')
             ->see('1 clase')
             ->see('8 clases')
             ->see('12 clases')
-            ->see('20 clases') 
-            //->select('')
+            ->see('20 clases')
             ->select('on','check1')
-            //->enable('precio1')
+            
             ->type(80,'precio1')
-           /*  ->select('on','check2')
-            ->type(80,'precio2')
-             *//* ->select('on','check3')
-            ->type('80','precio3')
-            ->select('on','check4')
-            ->type('80','precio4') */
+            ->select('on','check2')
+            ->type(80,'precio2') */
             ->see('Guardar')
             ->see('Cancelar')
             ->press('Guardar')
@@ -46,9 +41,9 @@ class ActividadTest extends TestCase
             ->see('estado')
             ->see('Editar')
             ->see('Eliminar');
-        /* $this->seeInDatabase('planactividad', [
-                'nombre'=>'danzas',
-                'estado'=>'activa'
+        /* $this->seeInDatabase('actividad', [
+                'nombre'=>'strong',
+                'estado'=>'Activa'
                 ]); */
     }
 
@@ -56,15 +51,30 @@ class ActividadTest extends TestCase
     {
 
         $this->visit(route('actividad.index'))
-             ->type('pesa','searchText')
+             ->type('str','searchText')
              ->press('Buscar')
-             ->seeInElement("table",'pesa')
+             ->seeInElement("table",'str')
              ->type('Telas','searchText')
              ->press('Buscar')
              ->dontSeeInElement("table",'Telas');
             
     }
 
-
+    public function test_modificar_planes_de_actividad()
+    {
+        $this->visit('actividad/1/edit')
+        ->see('Editar Actividad')
+        ->select('8 clases', 'plan')
+        ->see('Cantidad')
+        ->type(90, 'precio')
+        ->press('btn_add')
+        ->seeInElement("planes",'8 clases')
+        ->press('btn_eliminar')
+        ->dontSeeInElement("planes",'1 clase')
+        ->see('Guardar')
+        ->see('Cancelar')
+        ->press('Guardar')
+        ->seePageIs('/actividad');
+    }
 
 }

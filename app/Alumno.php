@@ -10,30 +10,31 @@ class Alumno extends Model
 
     protected $primaryKey='idalumno';
     
-    public $timestamps=false; /* laravel pude adicionar a la tabla 2 columnas para especificar cuando ah sido creado o actualizado el registro. Si queremos que se agreguen automaticamente agregamos la propiedad timenstamps en true. En este caso no queremos que se agreguen las columnas.*/
+    public $timestamps=false;
 
     protected $fillable = [
     	'nombre',
     	'apellido',
         'dni',
-        'fecha_nacimiento',
         'sexo',
     	'domicilio',
     	'telefono_celular',
     	'numero_contacto',
         'email',
         'certificado',
-        'fecha_certificado',
         'observaciones',
-        'fecha_alta date',
-        'estado'
+        'estado',
+        'saldo',
+        'foto',
+        'rutina'
         
-    ]; /* Especificamos que campos van a recibir un valor para poder almacenar el la base de datos*/
+    ];
 
     protected $dates = [
-         
         
-
+        'fecha_nacimiento',
+        'fecha_certificado', 
+        'fecha_alta'
     ];
     protected $guarded =[
     	// se van a especificar cuando no queremos que se asignen al modelo

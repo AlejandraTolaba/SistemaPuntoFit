@@ -21,7 +21,8 @@ class Actividad extends Model
 
     ];
 
-    public function plan(){
-        return $this->belongsToMany('sisPuntoFit\Plan') ;
+    public function planes(){
+        return $this->belongsToMany('sisPuntoFit\PlanActividad') ;
     }
+
 }

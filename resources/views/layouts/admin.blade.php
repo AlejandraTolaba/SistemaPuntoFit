@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ADPuntoFit | www.puntofit.com</title>
+
+    <!-- jQuery 2.1.4 -->
+    <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -17,6 +20,10 @@
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
     <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
     <link rel="icon" type="image/jpg" href="{{asset('imagenes/pf/logo1.jpg')}}">
+    
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 
   </head>
   <body class="hold-transition skin-green sidebar-mini">
@@ -26,7 +33,7 @@
         
         <!-- Logo -->
         
-        <a href="index2.html" class="logo">
+        <a href=# class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
             <div style="float:left">
                 <img src="{{asset('/imagenes/pf/logo1.jpg')}}"  class="img-circle" alt="Logo" height="30px" width="30px"/>
@@ -49,31 +56,31 @@
               <!-- Messages: style can be found in dropdown.less-->
               
               <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
+              <!-- <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                  
                     <i class="fa fa-user"></i>
                     <span class="hidden-xs">Administrador</span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu"> -->
                   <!-- User image -->
-                  <li class="user-header">
+                  <!-- <li class="user-header">
                     
                     <p>
                       www.incanatoit.com - Desarrollando Software
                       <small>www.youtube.com/jcarlosad7</small>
                     </p>
-                  </li>
+                  </li> -->
                   
                   <!-- Menu Footer-->
-                  <li class="user-footer">
+                  <!-- <li class="user-footer">
                     
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Cerrar</a>
                     </div>
                   </li>
                 </ul>
-              </li>
+              </li> -->
               
             </ul>
           </div>
@@ -99,20 +106,26 @@
             </li>
             
             <li class="treeview">
-              <a href="#">
+              <a href="{{url('profesor/create')}}">
                 <i class="fa fa-users"></i>
                 <span>Profesores</span>
-                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
             <li class="treeview">
               <a href="{{url('alumno/')}}">
-                <i class="fa fa-heart"></i>
+                <i class="fa fa-users"></i>
                 <span>Alumnos</span>
               </a>
             </li>
-                       
+
             <li class="treeview">
+            <a href="{{url('asistencia/')}}">
+                <i class="fa fa-check"></i>
+                <span>Asistencia</span>
+              </a>
+            </li>
+                       
+            <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-calendar"></i> <span>Horarios</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -146,7 +159,7 @@
                 <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
                 <small class="label pull-right bg-yellow">IT</small>
               </a>
-            </li>
+            </li> -->
                         
           </ul>
         </section>
@@ -163,7 +176,7 @@
         
         <!-- Main content -->
         <section class="content">
-          
+        @include('flash::message')  
           <div class="row">
             <div class="col-md-12">
                   <!--Contenido-->
@@ -184,11 +197,10 @@
         <strong>Copyright &copy; 2019. Todos los derechos reservados</strong> 
       </footer>
 
-      
-    <!-- jQuery 2.1.4 -->
-    <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
+   
     <!-- Bootstrap 3.3.5 -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
     

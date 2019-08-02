@@ -8,11 +8,11 @@ use sisPuntoFit\Http\Requests;
 
 use sisPuntoFit\Actividad;
 use sisPuntoFit\PlanActividad;
-//use sisPuntoFit\Plan;
+
 
 use Illuminate\Support\Facades\Redirect;
 use sisPuntoFit\Http\Requests\ActividadFormRequest;
-//use sisPuntoFit\Http\Requests\PlanActividadFormRequest;
+
 use DB;
 use Illuminate\Support\Collection;
 
@@ -21,8 +21,6 @@ class ActividadController extends Controller
 {
     public function __construct()
     {
-
-
     }
     public function index(Request $request)
     {
@@ -30,7 +28,7 @@ class ActividadController extends Controller
         {
             $query=trim($request->get('searchText')); //filtro de busqueda
             $actividades=DB::table('actividad')->where('nombre','LIKE','%'.$query.'%')
-            ->where('estado','=','activa')
+            ->where('estado','=','Activa')
             ->orderBy('idactividad','desc')
             ->paginate(10);
             
@@ -40,49 +38,38 @@ class ActividadController extends Controller
     }
     public function create()
     {
-        return view('actividad.create');
+        $planes=DB::table('plan')->get();
+        return view('actividad.create',["planes"=>$planes]);
     }
     public function store(ActividadFormRequest $request)
     {
         DB::beginTransaction();
         $actividad= new Actividad;
         $actividad->nombre = $request->get('nombre');
-        $actividad->estado = 'activa';
+        $actividad->estado = 'Activa';
         $actividad->save();
-
         $id_actividad=$actividad->idactividad;
         
-		if($request->has('check1')){
-            $plan_actividad1 = new PlanActividad();
-			$plan_actividad1->idactividad = $id_actividad;
-			$plan_actividad1->idplan=1;
-			$plan_actividad1->precio=$request->get('precio1');
-			$plan_actividad1->save();
-		}
-		if($request->has('check2')){
-            $plan_actividad2 = new PlanActividad();
-			$plan_actividad2->idactividad = $id_actividad;
-			$plan_actividad2->idplan=2;
-			$plan_actividad2->precio=$request->get('precio2');
-			$plan_actividad2->save();
-        }
-        if($request->has('check3')){
-            $plan_actividad3 = new PlanActividad();
-			$plan_actividad3->idactividad = $id_actividad;
-			$plan_actividad3->idplan=3;
-			$plan_actividad3->precio=$request->get('precio3');
-			$plan_actividad3->save();
-		}
-		if($request->has('check4')){
-            $plan_actividad4 = new PlanActividad();
-			$plan_actividad4->idactividad = $id_actividad;
-			$plan_actividad4->idplan=4;
-			$plan_actividad4->precio=$request->get('precio4');
-			$plan_actividad4->save();
-		}
+        $idplan=$request->get('plan');
+        $precio=$request->get('precio');
+        
+           
+        //+++++++++++++INICIAMOS CAPTURA DE VARIABLES ARREGLO[]//++++++++++++++
 
+        $cont = 0;
+
+        while ( $cont < count($idplan) ) {
+            $plan_actividad = new PlanActividad();
+            $plan_actividad->idactividad = $id_actividad; //le asignamos el id de la actividad a la que pertenece el plan
+            $plan_actividad->idplan=$idplan[$cont];
+            $plan_actividad->precio=$precio[$cont];
+            $plan_actividad->save();
+            $cont = $cont+1;
+
+        }
+        
         DB::commit();
-        return Redirect::to('actividad'); 
+        //return Redirect::to('actividad'); 
     }
 
     public function show($id)
@@ -92,12 +79,37 @@ class ActividadController extends Controller
 
     public function edit($id)
     {
-        
+        $actividad=Actividad::findOrFail($id);
+
+        $planes=DB::table('plan')->get();
+
+        $plan_actividad=DB::table('plan_actividad as pa')
+        ->join('plan as p','pa.idplan','=','p.idplan')
+        ->select('pa.idplan','p.nombre as plan','p.cantidad_clases as cantidad','pa.precio')
+        ->where('pa.idactividad','=',$id)->get();
+
+        return view('actividad.edit',["actividad"=>$actividad,"planes"=>$planes,"plan_actividad"=>$plan_actividad]);
     }
 
-    public function update(ActividadFormRequest $request,$id)
+    public function update(Request $request,$id)
     {
-       
+        DB::beginTransaction();
+        $idplan=$request->get('plan');
+        $precio=$request->get('precio');
+        
+        DB::table('plan_actividad')->where('idactividad','=',$id)->delete();
+        
+        $cont = 0;
+        while ( $cont < count($idplan) ) {
+            $plan_actividad = new PlanActividad();
+            $plan_actividad->idactividad = $id;
+            $plan_actividad->idplan=$idplan[$cont];
+            $plan_actividad->precio=$precio[$cont];
+            $plan_actividad->save();
+            $cont = $cont+1;
+        }
+        flash("Los cambios se realizaron con éxito")->success();
+        DB::commit();
     }
 
     public function destroy($id)

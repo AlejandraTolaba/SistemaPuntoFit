@@ -99,8 +99,16 @@ return [
     */
     'attributes' => [
         'nombre' => 'Nombre',
-        'telefono_celular' => 'Teléfono - Celular',
+        'nombrea' => 'Nombre (*)',
+        'telefono_celular' => 'Teléfono - Celular (*)',
         'precio' => 'Precio',
+        'apellido' => 'Apellido (*)',
+        'dni' => 'DNI (*)',
+        'domicilio' => 'Domicilio (*)',
+        'cantidad_clases'=> 'Cantidad de clases',
+        'imc' => 'IMC',
+        'imm' => 'IMM',
+        'mb' => 'MB',
     ],
 ];
 
