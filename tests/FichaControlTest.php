@@ -43,4 +43,17 @@ class FichaControlTest extends TestCase
         'grasa_viceral'=>40
         ]);
     }
+
+    public function test_listar_fichas_de_alumno(){
+        $this->visit('alumno/fichaControlCorporal/7')
+            ->see('Fichas de Control Corporal de Rocio Tolaba')
+            ->see('Fecha')
+            ->see('Peso')
+            ->see('Edad Corporal')
+            ->see('IMC')
+            ->see('Grasa Corporal')
+            ->see('IMM')
+            ->see('MB')
+            ->see('Grasa Visceral');
+    }
 }
