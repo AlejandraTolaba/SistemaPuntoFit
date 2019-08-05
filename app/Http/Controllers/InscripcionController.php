@@ -90,7 +90,7 @@ class InscripcionController extends Controller
             } else {
                 $inscripcion->saldo=0;
             }
-            $inscripcion->save();
+           
 
             $movimiento= new Movimiento();
             $movimiento->concepto= "Inscripción N° ".$inscripcion->idinscripcion;
@@ -101,7 +101,25 @@ class InscripcionController extends Controller
 
             DB::commit();
             
-            return Redirect::to('alumno/');
+            if ( $inscripcion->save())
+            {
+                flash("La inscripción se guardo exitosamente")->success();
+                //return Redirect::back(); //para redireccionar 
+    
+                $alumno= DB::table('alumno as a')
+                ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
+                ->where('a.idalumno','=',$idalumno)->first();
+                    
+                $inscripciones=DB::table('inscripcion as i')
+                ->join('plan as p','i.idplan','=','p.idplan')
+                ->join('actividad as a','a.idactividad','=','i.idactividad')
+                ->select('a.nombre as actividad','p.nombre as plan','fecha_vencimiento_inscripcion','i.cantidad_clases as cantidad','i.saldo as saldo','i.estado','i.idinscripcion')
+                ->where ('i.idalumno','=', $idalumno)
+                ->orderBy('fecha_inscripcion','desc')           
+                ->paginate(10);
+            
+                return view('alumno.inscripcion.index',["inscripciones"=>$inscripciones,"alumno"=>$alumno]);
+            }
             
         } else {
            

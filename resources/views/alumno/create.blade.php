@@ -24,7 +24,7 @@
 								
 										<div class="col-lg-6">
 											<div class="form-group">
-												{!! Field::text('nombrea',['class'=>'form-control', 'name'=>'nombre','placeholder'=>'Nombre del alumno...', 'value'=>'old(nombrea)'])!!}
+												{!! Field::text('nombrea',['class'=>'form-control','placeholder'=>'Nombre del alumno...', 'value'=>'old(nombrea)'])!!}
 												<!-- <label for="nombre">Nombre (*)</label>
 												<input type="text" name="nombre" value="{{old('nombre')}}" class="form-control" placeholder="Nombre del alumno..." required> -->
 											</div>
