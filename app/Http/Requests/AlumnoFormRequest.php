@@ -26,7 +26,7 @@ class AlumnoFormRequest extends Request
         return [
             'nombrea'=>'required|max:45',
             'apellido'=>'required|max:45',
-            'dni'=>'required|max:8|unique:alumno',
+            'dni'=>'required|max:8',
             'fecha_nacimiento'=>'required',
             'sexo'=>'required|max:1',
             'domicilio'=>'required|max:250',

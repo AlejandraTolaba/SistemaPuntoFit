@@ -45,8 +45,35 @@ class FichaControlController extends Controller
         if ( $ficha->save())
         {
             flash("La ficha de control corporal se guardo exitosamente")->success();
-            return Redirect::back(); //para redireccionar 
+            //return Redirect::back(); //para redireccionar 
+
+            $alumno= DB::table('alumno as a')
+            ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
+            ->where('a.idalumno','=',$idalumno)->first();
+                
+            $fichas=DB::table('ficha_control as f')
+            ->select('fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
+            ->where ('f.idalumno','=', $idalumno)
+            ->orderBy('fecha_registro','desc')
+            ->paginate(10);
+        
+            return view('alumno.fichaControlCorporal.index',["fichas"=>$fichas,"alumno"=>$alumno]);
         }
     }
 
+    public function index($idalumno)
+    {
+        $alumno= DB::table('alumno as a')
+        ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
+        ->where('a.idalumno','=',$idalumno)->first();
+            
+        $fichas=DB::table('ficha_control as f')
+        ->select('fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
+        ->where ('f.idalumno','=', $idalumno)
+        ->orderBy('fecha_registro','desc')
+        ->paginate(10);
+    
+        return view('alumno.fichaControlCorporal.index',["fichas"=>$fichas,"alumno"=>$alumno]);
+
+    }
 }

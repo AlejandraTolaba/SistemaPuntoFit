@@ -56,3 +56,5 @@ Route::patch('actividad/{idactividad}/edit/','ActividadController@update');
 
 Route::get('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionController@mostrarInscripcion');
 Route::post('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionController@actualizarSaldo');
+
+Route::get('alumno/fichaControlCorporal/{idalumno}','FichaControlController@index');

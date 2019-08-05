@@ -5,17 +5,6 @@
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h2 class="box-tittle">Listado de Alumnos</h2>
-                    <div class="row">
-						<div class="col-lg-4">
-							<div class="flash-message">
-								@foreach (['danger', 'warning', 'success', 'info','light'] as $msg)
-								@if(Session::has('alert-' . $msg))
-									<p class="alert alert-{{ $msg }} role="alert"">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-								@endif
-								@endforeach
-							</div> <!-- end .flash-message -->
-						</div>
-					</div>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -36,7 +25,7 @@
                                         <th>DNI</th>
 										<th>Teléfono</th>
                                         <th>Saldo</th> <!-- Agregue esto  -->
-                                        <th>Opciones</th>
+                                        <th style="width:40%;">Opciones</th>
                                     </thead>
                                     @foreach ($alumnos as $a)
                                         <tr>
@@ -51,8 +40,9 @@
                                             @endif <!-- Agregue esto  -->
                                             <td>
                                             <a href="#"><button name="Visualizar" type="submit" class="btn btn-success"><i class="fa fa-user"></i> Visualizar</button></a>
-                                            <a href="{{URL::action('InscripcionController@index',$a->idalumno)}}"><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button></a>
                                             <a href="{{URL::action('AlumnoController@edit',$a->idalumno)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
+                                            <a href="{{URL::action('InscripcionController@index',$a->idalumno)}}"><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button></a>
+                                            <a href="{{URL::action('FichaControlController@index',$a -> idalumno)}}"><button name="VerFicha" type="submit" class="btn btn-primary"><i class="fa fa-file"></i> Fichas</button></a>
                                                 <!-- <a href="{{URL::action('AlumnoController@edit',$a -> idalumno)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i></button></a>
                                                 <a href="" data-target="#modal-delete-{{$a->idalumno}}"data-toggle="modal"><button name="Eliminar" class="btn btn-danger"><i class="fa fa-remove"></i></button></a> -->
                                             </td>
