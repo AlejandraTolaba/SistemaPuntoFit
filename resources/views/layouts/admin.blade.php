@@ -106,7 +106,7 @@
             </li>
             
             <li class="treeview">
-              <a href="{{url('profesor/create')}}">
+              <a href="{{url('profesor/')}}">
                 <i class="fa fa-users"></i>
                 <span>Profesores</span>
               </a>
@@ -122,6 +122,13 @@
             <a href="{{url('asistencia/')}}">
                 <i class="fa fa-check"></i>
                 <span>Asistencia</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+            <a href="{{url('cumpleaños/')}}">
+                <i class="fa fa-birthday-cake"></i>
+                <span>Cumpleaños</span>
               </a>
             </li>
                        
@@ -192,7 +199,7 @@
 
       <footer class="main-footer no-print">
         <div class="pull-right hidden-xs">
-          <b>Desarrollado por Miriam-Alejandra</b> 
+          <b>Desarrollado por Mirian-Alejandra</b> 
         </div>
         <strong>Copyright &copy; 2019. Todos los derechos reservados</strong> 
       </footer>

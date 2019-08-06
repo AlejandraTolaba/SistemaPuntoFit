@@ -46,4 +46,26 @@ class ProfesorTest extends TestCase
             'estado'=>'Activo'
             ]);
     }
+
+    public function test_listar_profesores(){
+        $this->visit('profesor')
+            ->see('Listado de Profesores')
+            ->see('Foto')
+            ->see('Nombre')
+            ->see('DNI')
+            ->see('Teléfono')
+            ->see('Estado');
+    }
+
+    public function test_buscar_profesor_en_listado()
+    {
+        $this->visit(route('profesor.index'))
+             ->type('Sofia','searchText')
+             ->press('Buscar')
+             ->seeInElement("table",'Sofia')
+             ->type('Marisel','searchText')
+             ->press('Buscar')
+             ->dontSeeInElement("table",'Marisel');
+            
+    }
 }

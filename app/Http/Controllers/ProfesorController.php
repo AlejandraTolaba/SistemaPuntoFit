@@ -69,7 +69,22 @@ class ProfesorController extends Controller
         if ( $profesor->save())
         {
             flash("El profesor se guardo exitosamente")->success();
-            return Redirect::back(); //para redireccionar 
+            return Redirect::to('profesor/');  
         } 
+    }
+
+    public function index(Request $request)
+    {
+    	if ($request) 
+    	{
+            $query=trim($request->get('searchText'));
+            $profesores=DB::table('profesor')
+            ->select('idprofesor','foto',DB::raw('CONCAT(nombre," ",apellido)as profesor'), 'dni', 'telefono_celular', 'estado')
+            ->where(DB::raw('CONCAT(nombre," ",apellido)'),'LIKE','%'.$query.'%')
+            ->orwhere('dni','LIKE','%'.$query.'%')
+            ->orderBy('idprofesor','desc')
+            ->paginate(10);
+            return view('profesor.index',["profesores"=>$profesores,"searchText"=>$query]);
+    	}
     }
 }

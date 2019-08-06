@@ -58,3 +58,5 @@ Route::get('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionC
 Route::post('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','InscripcionController@actualizarSaldo');
 
 Route::get('alumno/fichaControlCorporal/{idalumno}','FichaControlController@index');
+
+Route::get('cumpleaños','CumpleañosController@mostrarCumpleañeros');
