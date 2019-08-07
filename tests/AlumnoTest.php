@@ -132,4 +132,21 @@ class AlumnoTest extends TestCase
                 'rutina'=>'Lunes, martes, miercoles'
                 ]);
     }
+
+    public function test_ver_datos_de_un_alumno()
+    {
+        $this->visit('alumno/1')
+            ->see('Datos del alumno')
+            ->see('Nombre: Mirian Aldana Quispe', 'nombre')
+            ->see('Domicilio: Vaqueros 123', 'domicilio' )
+            ->see('Telefono: 156854921', 'telefono' )
+            ->see('Contacto: 4921678', 'contacto' )
+            ->see('Email: mimi@gmail.com', 'email' )
+            ->see('Certificado: SI','certificado')
+            ->see('Fecha Presentacion: 2019-07-30', 'fecha_certificado' )
+            ->see('Rutina')
+            ->see('Lunes')
+            ->see('Volver')
+            ->click('Volver');
+    }
 }

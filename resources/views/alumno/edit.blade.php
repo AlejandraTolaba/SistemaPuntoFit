@@ -116,9 +116,9 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							{!! Field::text('contacto',['class'=>'form-control','placeholder'=>'Ingrese número de contacto'])!!}
-							<!-- <label for="numero_contacto">Contacto</label>
-							<input type="text" name="numero_contacto" value="{{$alumno->numero_contacto}}" class="form-control" placeholder="Contacto..."> -->
+							<!-- {!! Field::text('contacto',['class'=>'form-control','placeholder'=>'Ingrese número de contacto'])!!} -->
+							<label for="numero_contacto">Contacto</label>
+							<input type="text" name="numero_contacto" value="{{$alumno->numero_contacto}}" class="form-control" placeholder="Contacto...">
 						</div>
 					</div>
 				</div>

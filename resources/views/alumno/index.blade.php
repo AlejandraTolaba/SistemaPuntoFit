@@ -39,7 +39,7 @@
                                                 <td>{{'$'.$a -> saldo }}</td>
                                             @endif <!-- Agregue esto  -->
                                             <td>
-                                            <a href="#"><button name="Visualizar" type="submit" class="btn btn-success"><i class="fa fa-user"></i> Visualizar</button></a>
+                                            <a href="{{URL::action('AlumnoController@show',$a->idalumno)}}" ><button name="Visualizar" type="submit" class="btn btn-success"><i class="fa fa-user"></i> Visualizar</button></a>
                                             <a href="{{URL::action('AlumnoController@edit',$a->idalumno)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
                                             <a href="{{URL::action('InscripcionController@index',$a->idalumno)}}"><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button></a>
                                             <a href="{{URL::action('FichaControlController@index',$a -> idalumno)}}"><button name="VerFicha" type="submit" class="btn btn-primary"><i class="fa fa-file"></i> Fichas</button></a>

@@ -109,6 +109,9 @@ class AlumnoController extends Controller
     
     public function show($id) //recibe el parametro que es el id de la categoria que voy a retornar
     {
+        $alumno = Alumno::findOrFail($id);
+		//->first();
+		return view("alumno.show",['alumno'=>$alumno]);
         //retorna una vista
     } //con la funcion findOrFail devuelvo solo la categoria que le mando como parametro
 
