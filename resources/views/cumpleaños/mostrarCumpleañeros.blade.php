@@ -57,6 +57,22 @@
                                         </td>
                                     </tr>   
                                     @endforeach
+                                    @foreach ( $cumpleañerosA as $cumpleañeroA)
+                                    <tr>
+                                        <td>
+                                            <div class="media" align="center">
+                                                <div class="media-left">
+                                                    <img  name="Foto" class="media-object" src="{{asset('imagenes/alumnos/'.$cumpleañeroA->foto)}}" style="border:1px solid #b0b8b9;" height="90px" width="100px">
+                                                </div>
+                                                <div class="media-body">
+                                                    <br>
+                                                    <h4 name="Nombre" class="media-heading">{{$cumpleañeroA->alumno}}</h4>
+                                                    <h4 name="Edad" class="media-heading">{{$cumpleañeroA->edad}} años</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>   
+                                    @endforeach
                                 </table>
                             </div> <!-- end table-responsive -->
                             <div class="row" align="right">
