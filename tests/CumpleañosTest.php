@@ -17,10 +17,12 @@ class CumpleañosTest extends TestCase
 
     public function test_listar_cumpleaños(){
         $this->visit('cumpleaños')
-            ->see('Hoy es el cumpleaños de ')
-            ->see('foto')
-            ->see('nombre')
-            ->see('edad');
+            ->see(' Cumpleaños de Hoy ')
+            ->seeInElement("table",'foto')
+            ->seeInElement("table",'Emilse Tolaba')
+            ->seeInElement("table",'21 años')
+            ->see('Volver')
+            ->click('Volver');
     }
 
 }
