@@ -26,7 +26,7 @@
                                                         <img  name="foto" class="media-object" src="{{asset('imagenes/torta3.png')}}" style="border:1px solid #b0b8b9;" height="100px" width="110px">
                                                     </div>
                                                 @endif
-                                                <div name="datos" class="media-body">
+                                                <div class="media-body">
                                                     <br>
                                                     <h4 name="nombre" class="media-heading">{{$cumpleañeroP->profesor}}</h4>
                                                     <h4 name="edad" class="media-heading">{{$cumpleañeroP->edad}} años</h4>
@@ -41,7 +41,7 @@
                                             <div class="media" align="center">
                                                 @if (($cumpleañeroA->foto)!="")
                                                     <div class="media-left">
-                                                        <img  name="foto" class="media-object" src="{{asset('imagenes/profesores/'.$cumpleañeroA->foto)}}" style="border:1px solid #b0b8b9;" height="100px" width="110px">
+                                                        <img  name="foto" class="media-object" src="{{asset('imagenes/alumnos/'.$cumpleañeroA->foto)}}" style="border:1px solid #b0b8b9;" height="100px" width="110px">
                                                     </div>
                                                 @else
                                                     <div class="media-left">
@@ -57,27 +57,10 @@
                                         </td>
                                     </tr>   
                                     @endforeach
-                                    @foreach ( $cumpleañerosA as $cumpleañeroA)
-                                    <tr>
-                                        <td>
-                                            <div class="media" align="center">
-                                                <div class="media-left">
-                                                    <img  name="Foto" class="media-object" src="{{asset('imagenes/alumnos/'.$cumpleañeroA->foto)}}" style="border:1px solid #b0b8b9;" height="90px" width="100px">
-                                                </div>
-                                                <div class="media-body">
-                                                    <br>
-                                                    <h4 name="Nombre" class="media-heading">{{$cumpleañeroA->alumno}}</h4>
-                                                    <h4 name="Edad" class="media-heading">{{$cumpleañeroA->edad}} años</h4>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>   
-                                    @endforeach
                                 </table>
                             </div> <!-- end table-responsive -->
                             <div class="row" align="right">
                                 <div class="col-md-12">
-                                    <!-- <button class="btn btn-info" href="{{ URL::previous() }}">Volver</button> -->
                                     <a  class="btn btn-info" href="{{ URL::previous() }}">Volver</a>
                                 </div>
                             </div>
