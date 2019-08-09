@@ -170,7 +170,7 @@ class InscripcionController extends Controller
             ->first();
             
             if($inscripcionA == NULL){
-                flash("El DNI ". $query . " no tiene inscripciones activas")->error()->important();
+                flash("El DNI ". $query . " no tiene inscripciones activas")->error();
                 return Redirect::back()->with('alarma','Debe sonar alarma');
             }
             else{
@@ -181,11 +181,11 @@ class InscripcionController extends Controller
                 $inscripcion->update();
 
                 if (($mytime->toDateString())==($mytime2->toDateString())){
-                    flash("Hoy se vence tu inscripción")->success();
+                    flash("Hoy se vence tu inscripción")->warning();
                 } else {
                     $diff = $mytime2->diffInDays($mytime)+1;
                     if (($diff<=5) && ($diff>=1)){
-                        flash("En ". $diff . " días se vence tu inscripción")->success();
+                        flash("En ". $diff . " días se vence tu inscripción")->warning();
                     }
                 }
                 return view('asistencia.mostrarAlumno',["inscripcionA"=>$inscripcionA]);

@@ -18,6 +18,10 @@
                                 <img class="media-object" src="{{asset('imagenes/alumnos/'.$inscripcionA->foto)}}" style="border:1px solid #b0b8b9;" height="90px" width="100px">
                             </div>
                         </div>
+                        <!-- <div align="center">
+                            <h1>{{$inscripcionA->nombrecompleto}}</h1>
+                            <img src="{{asset('imagenes/alumnos/'.$inscripcionA->foto)}}" alt="{{ $inscripcionA -> nombrecompleto }}" height="200px" width="200px" class="img-thumbnail">
+                        </div> -->
                     @else
                         <h1 align="center" class="box-tittle">{{$inscripcionA->nombrecompleto}}</h1>
                     @endif
@@ -33,23 +37,23 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="text-center" style="background-color: gray;">
-                                <h3 style="color:white;">{{ $inscripcionA -> actividad }}</h3>
+                                <h3 style="color:white">{{ $inscripcionA -> actividad }}</h3> <!-- ;font-size:300% -->
                             </div>
                             <div class="table-responsive">
                                 <table class="table" id="table">
                                     <tr>
-                                        <th style="width:50%">Plan</th>
-                                        <td>{{ $inscripcionA -> plan }}</td>
+                                        <th style="width:50%">Plan</th> <!-- ;font-size:200% -->
+                                        <td >{{ $inscripcionA -> plan }}</td> <!-- style="font-size:200%" -->
                                     </tr>
                         
                                     <tr>
-                                        <th>Fecha de Vencimiento</th>
-                                        <td> <?php $fv = new DateTime($inscripcionA->fecha_vencimiento_inscripcion); echo $fv->format('d-m-Y');?></td>
+                                        <th >Fecha de Vencimiento</th> <!-- style="font-size:200%" --> 
+                                        <td > <?php $fv = new DateTime($inscripcionA->fecha_vencimiento_inscripcion); echo $fv->format('d-m-Y');?></td>
                                     </tr>
 
                                     <tr>
                                         <th class = "success text-success">Clases restantes</th>
-                                        <td class = "success text-success"><b>{{ $inscripcionA -> cantidad }}</b></td>
+                                        <td class = "success text-success"><b>{{ $inscripcionA -> cantidad }} clases</b></td>
                                     </tr>
 
                                     <tr>

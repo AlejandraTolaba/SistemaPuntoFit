@@ -4,12 +4,11 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="box box-success">
                 <div class="box-body">
-                
-					<div class="col-lg-12">
-                        <div class="panel panel-success">
-                            <div class="panel-heading" name="datos"><b> Datos del alumno</b></div>
-                                <div class="panel-body">
-                                    <div class="row">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-success">
+                                <div class="panel-heading" name="datos"><b> DATOS DEL ALUMNO</b></div>
+                                    <div class="panel-body">
                                         @if($alumno->foto != '')
                                             <div class="col-lg-6">
                                                 <h5 name="nombre"><b>Nombre:</b> {{$alumno->nombre}} {{$alumno->apellido}}</h5>
@@ -38,9 +37,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-lg-6">
-                                                <br><br>
+                                                <br>
                                                 <div align="center">
-                                                    <img src="{{asset('imagenes/alumnos/'.$alumno->foto)}}" alt="{{$alumno->foto}}" height="130px" width="130px" style="border:1px solid #b0b8b9;"></h5>
+                                                    <img src="{{asset('imagenes/alumnos/'.$alumno->foto)}}" alt="{{$alumno->foto}}" height="180px" width="180px" style="border:1px solid #b0b8b9;"></h5>
                                                 </div>
                                             </div>
                                             @else
@@ -78,34 +77,35 @@
                     </div> <!-- end primer col-lg-->
                 </div>
                 @if ($alumno->observaciones != '')
-                    
-                        <div class="col-lg-12">
-                            <div class="panel panel-success" name="pobservaciones">
-                                <div class="panel-heading"><b>Observaciones</b></div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h5 name="observaciones">{{$alumno->observaciones}}</h5>
-                                            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success" name="pobservaciones">
+                            <div class="panel-heading"><b>OBSERVACIONES</b></div>
+                                <div class="panel-body">
+                        
+                                        <div class="col-lg-12">
+                                            <h5 name="observaciones">{{$alumno->observaciones}}</h5>
                                         </div>
-                                    </div>
-                            </div>
+                                </div>
                         </div>
+                    </div>
+                </div>
                     
                 @endif
                 @if($alumno->rutina != '')
-                        <div class="col-lg-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading"><b>Rutina</b></div>
-                                    <div class="panel-body" name="prutina">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                    <h5 name="rutina">{{$alumno->rutina}}</h5>
-                                            </div> 
-                                        </div>  
-                                    </div>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading"><b>RUTINA</b></div>
+                                <div class="panel-body" name="prutina">
+                                    
+                                        <div class="col-lg-12">
+                                                <h5 name="rutina">{{$alumno->rutina}}</h5>
+                                        </div> 
+                                </div>  
                         </div>
+                    </div>
+                </div>
                 @endif
 
                 <div class="row">
