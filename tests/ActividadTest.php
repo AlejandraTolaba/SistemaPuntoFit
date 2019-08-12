@@ -77,4 +77,39 @@ class ActividadTest extends TestCase
         ->seePageIs('/actividad');
     }
 
+    public function test_listar_inscripciones_de_actividad()
+    {
+        $this->visit('actividad/2/mostrarInscripciones')
+                ->see('Inscripciones de Aikido')
+                ->see('desde')
+                ->see('hasta')
+                ->see('filtrar')
+                ->see('Nº')
+                ->see('Alumno')
+                ->see('Plan')
+                ->see('Fecha')
+                ->see('Estado')
+                ->see('Volver')
+                ->click('Volver');
+    }
+
+    public function test_filtrar_inscripciones_de_actividad_por_fecha()
+    {
+        $this->visit('actividad/2/mostrarInscripciones')
+                ->see('Inscripciones de Aikido')
+                ->see('desde')
+                ->see('hasta')
+                ->type('2019-07-10', 'desde' )
+                ->type('2019-07-30', 'hasta' )
+                ->see('filtrar')
+                ->press('filtrar')
+                    ->seeInElement("table",'2')
+                    ->seeInElement("table",'Emilse Tolaba')
+                    ->seeInElement("table",'8 clases')
+                    ->seeInElement("table",'23-07-2019')
+                    ->seeInElement("table",'Activa')
+                ->see('Volver')
+                ->click('Volver');
+    }
+
 }

@@ -60,3 +60,6 @@ Route::post('alumno/inscripcion/{idinscripcion}/mostrarInscripcion','Inscripcion
 Route::get('alumno/fichaControlCorporal/{idalumno}','FichaControlController@index');
 
 Route::get('cumpleaños','CumpleañosController@mostrarCumpleañeros');
+
+Route::get('actividad/{idactividad}/mostrarInscripciones','ActividadController@mostrarInscripcionesPorActividad');
+Route::post('actividad/{idactividad}/mostrarInscripciones','ActividadController@mostrarInscripcionesPorActividadDesdeHasta');
