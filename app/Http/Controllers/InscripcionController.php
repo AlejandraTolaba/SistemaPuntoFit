@@ -11,6 +11,7 @@ use sisPuntoFit\Alumno;
 use sisPuntoFit\Actividad;
 use sisPuntoFit\Plan;
 use sisPuntoFit\Movimiento;
+use sisPuntoFit\Asistencia;
 use Illuminate\Support\Facades\Redirect; //(para poder hacer redirecciones)
 use Illuminate\Support\Facades\Input;
 use sisPuntoFit\Http\Requests\InscripcionFormRequest;
@@ -179,6 +180,11 @@ class InscripcionController extends Controller
                 $mytime = Carbon::now();
                 $mytime2 = $inscripcion->fecha_vencimiento_inscripcion;
                 $inscripcion->update();
+
+                $asistencia = new Asistencia();
+                $asistencia->idinscripcion = $inscripcion->idinscripcion;
+                $asistencia->fecha = $mytime;
+                $asistencia->save();
 
                 if (($mytime->toDateString())==($mytime2->toDateString())){
                     flash("Hoy se vence tu inscripción")->warning();

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 */
 
 Route::get('/', function () {
-    return view('layouts/admin');
+    return view('asistencia.buscar');
 });
 
 Route::resource('actividad','ActividadController');
@@ -33,6 +33,8 @@ Route::post('actividad/create','ActividadController@store');
 Route::get('asistencia','InscripcionController@buscar');
 Route::get('asistencia/mostrarAlumno','InscripcionController@mostrarAlumno');
 Route::get('asistencia/cambiarCantidad/{idinscripcion}','InscripcionController@updateCantidad');
+
+Route::get('asistencia/index','AsistenciaController@index');
 
 Route::get('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@create');
 Route::post('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@store');

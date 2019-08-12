@@ -54,6 +54,27 @@ class InscripcionTest extends TestCase
         
     }
 
+    public function test_acceso_directo_a_agregar_alumno(){
+        $this->visit('/')
+        ->see('Agregar Alumno')
+        ->click('Agregar Alumno')
+        ->seePageIs('alumno/create');
+    }
+
+    public function test_acceso_directo_a_registrar_movimiento(){
+        $this->visit('/')
+        ->see('Agregar Movimiento')
+        ->click('Agregar Movimiento')
+        ->seePageIs('movimiento/create');
+    }
+
+    public function test_acceso_directo_a_listar_asistencia(){
+        $this->visit('/')
+        ->see('Listar Asistencia')
+        ->click('Listar Asistencia')
+        ->seePageIs('asistencia/index');
+    }
+
     public function test_actualizar_saldo_inscripcion()
     {
         $this->visit('/alumno/inscripcion/3/mostrarInscripcion')

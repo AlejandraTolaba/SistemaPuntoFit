@@ -1,22 +1,47 @@
 @extends('layouts.admin')
 @section('contenido')
-{!! Form::open(array('url'=>'asistencia/mostrarAlumno', 'method'=>'GET', 'autocomplete'=>'off'))!!}
+
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             @include('flash::message')
         </div>
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <div class="box box-success">
-                <div class="box-header with-border">
-                    <h2 class="box-tittle">Registrar Asistencia </h2>
+                <div class="box-header">
+                    <!-- <div class="row" align="center">
+                        <div class="col-lg-4">
+                            <a href="{{ route('alumno.create') }}"><button class="btn btn-success"><i class="fa fa-user-plus"></i><br> Agregar Alumno</button></a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="{{ route('alumno.create') }}"><button class="btn btn-success"><i class="fa fa-usd"></i><br> Registrar Movimiento</button></a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="{{ route('alumno.index') }}"><button class="btn btn-success"><i class="fa fa-list"></i><br> Listar Asistencia</button></a>
+                        </div>
+                    </div>
+                    <br> -->
+
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                        <a href="{{ route('alumno.create') }}"><button class="btn bg-olive"><i class="fa fa-user-plus"></i> Agregar Alumno</button></a>
+                        </div>
+                        <div class="btn-group" role="group">
+                        <a href="{{ route('alumno.create') }}"><button class="btn bg-purple"><i class="fa fa-usd"></i> Agregar Movimiento</button></a>
+                        </div>
+                        <div class="btn-group" role="group">
+                        <a href="asistencia/index"><button class="btn btn-primary"><i class="fa fa-list"></i> Listar Asistencia</button></a>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="box-body">
+                    <br><br><br><br><br>
                     @if (session('alarma'))
                             <audio src="audios/error.mp3" autoplay></audio>
                     @endif
-                </div>
-                <div class="box-body">
-                
+                {!! Form::open(array('url'=>'asistencia/mostrarAlumno', 'method'=>'GET', 'autocomplete'=>'off'))!!}
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-4 col-md-offset-4">
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="searchText" placeholder="Ingrese DNI..." autofocus>
