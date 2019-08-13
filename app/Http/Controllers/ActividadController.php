@@ -15,7 +15,7 @@ use sisPuntoFit\Http\Requests\ActividadFormRequest;
 
 use DB;
 use Illuminate\Support\Collection;
-
+use Carbon\Carbon;
 
 class ActividadController extends Controller
 {
@@ -27,8 +27,10 @@ class ActividadController extends Controller
         if ($request)
         {
             $query=trim($request->get('searchText')); //filtro de busqueda
-            $actividades=DB::table('actividad')->where('nombre','LIKE','%'.$query.'%')
-            ->where('estado','=','Activa')
+            $actividades=DB::table('actividad as a')
+            ->select('a.idactividad','a.nombre',DB::RAW('(select count(idinscripcion) from inscripcion as i where a.idactividad=i.idactividad and i.estado="Activa") as cantidad_i_activas'),'a.estado')
+            ->where('a.nombre','LIKE','%'.$query.'%')
+            //->where('a.estado','=','Activa')
             ->orderBy('idactividad','desc')
             ->paginate(10);
             
@@ -115,5 +117,37 @@ class ActividadController extends Controller
     public function destroy($id)
     {
         
+    }
+
+    public function mostrarInscripcionesPorActividad($id){
+        $desde=Carbon::now()->toDateString();
+        $hasta=Carbon::now()->toDateString();
+        $actividad=Actividad::findOrFail($id);
+        $inscripciones=DB::table('inscripcion as i')
+        ->join('plan as p','i.idplan','=','p.idplan')
+        ->join('alumno as al','i.idalumno','=','al.idalumno')
+        ->join('actividad as a','i.idactividad','=','a.idactividad')
+        ->select('i.idinscripcion',DB::raw('CONCAT(al.nombre," ",al.apellido) as alumno'),'p.nombre as plan','fecha_inscripcion','i.estado','a.nombre as actividad')
+        ->where ('i.idactividad','=', $id)
+        ->orderBy('idinscripcion','desc')
+        ->paginate(20);
+        return view('actividad.mostrarInscripciones',["inscripciones"=>$inscripciones,"actividad"=>$actividad,"desde"=>$desde,"hasta"=>$hasta]);
+    }
+
+    public function mostrarInscripcionesPorActividadDesdeHasta(Request $request,$id){
+        $desde=Carbon::createFromFormat('Y-m-d',$request->get('desde'))->toDateString();
+        $hasta=Carbon::createFromFormat('Y-m-d',$request->get('hasta'))->toDateString();
+        $actividad=Actividad::findOrFail($id);
+
+        $inscripciones=DB::table('inscripcion as i')
+        ->join('plan as p','i.idplan','=','p.idplan')
+        ->join('alumno as al','i.idalumno','=','al.idalumno')
+        ->join('actividad as a','i.idactividad','=','a.idactividad')
+        ->select('i.idinscripcion',DB::raw('CONCAT(al.nombre," ",al.apellido) as alumno'),'p.nombre as plan','fecha_inscripcion','i.estado','a.nombre as actividad')
+        ->where ('i.idactividad','=', $id)
+        ->whereBetween('fecha_inscripcion',[$desde,$hasta])
+        ->orderBy('idinscripcion','desc')
+        ->paginate(20);
+        return view('actividad.mostrarInscripciones',["inscripciones"=>$inscripciones,"actividad"=>$actividad,"desde"=>$desde,"hasta"=>$hasta]);
     }
 }

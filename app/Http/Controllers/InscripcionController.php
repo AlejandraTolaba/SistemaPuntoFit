@@ -91,20 +91,19 @@ class InscripcionController extends Controller
             } else {
                 $inscripcion->saldo=0;
             }
-           
-
-            $movimiento= new Movimiento();
-            $movimiento->concepto= "Inscripción N° ".$inscripcion->idinscripcion;
-            $movimiento->tipo="Ingreso";
-            $movimiento->monto=$request->get('monto');
-            $movimiento->fecha=$mytime;
-            $movimiento->save();
 
             DB::commit();
             
             if ( $inscripcion->save())
             {
                 flash("La inscripción se guardo exitosamente")->success();
+                
+                $movimiento= new Movimiento();
+                $movimiento->concepto= "Inscripción N° ".$inscripcion->idinscripcion;
+                $movimiento->tipo="Ingreso";
+                $movimiento->monto=$request->get('monto');
+                $movimiento->fecha=$mytime;
+                $movimiento->save();
                 //return Redirect::back(); //para redireccionar 
     
                 $alumno= DB::table('alumno as a')
