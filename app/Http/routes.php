@@ -51,7 +51,6 @@ Route::get('dropdown', function(){
 	//dd($planes);
 });
 
-
 Route::post('actividad/{idactividad}/plan/create/','PlanController@store');
 
 Route::patch('actividad/{idactividad}/edit/','ActividadController@update');

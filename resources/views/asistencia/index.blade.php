@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="table-responsive">
@@ -28,16 +28,17 @@
                                     <thead>
                                         <th>Nombre del Alumno</th>
                                     </thead>
-                                    @foreach ($asistencias as $asistencia)
-                                        <tr> 
-                                            <td>{{ $asistencia -> alu }}</td>
-                                        </tr>
-                                    @endforeach
+                                    <tbody id="tabla">
+                                        @foreach ($asistencias as $act)
+                                            <tr>
+                                                <td>{{ $act -> alu }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-					
                 </div> <!-- end-div-box-body -->
             </div> <!-- end-div-box-success -->
         </div> <!-- end-div-col-md-8 -->

@@ -27,28 +27,9 @@ class AsistenciaController extends Controller
         ->join('actividad as ac','ac.idactividad','=','i.idactividad')
         ->join('alumno as al','al.idalumno','=','i.idalumno')
         ->select('i.idinscripcion','al.idalumno',DB::raw('CONCAT(al.nombre," ",al.apellido)AS alu'))
-        ->where('fecha','=',$mytime->toDateString())
-        ->orderBy('alu','desc')
+        ->orderBy('alu')
         ->paginate(10);
-        //dd($asistencias);
-        
         return view('asistencia.index',["actividades"=>$actividades, "asistencias"=>$asistencias]);
     }
 
-    public function mostrar_asistencias_por_actividad()
-    {
-        $idactividad = Input::get('option');
-        dd('$idactividad');
-        /* $asistencias=DB::table('asistencia as a')
-        ->join('inscripcion as i','a.idinscripcion','=','i.idinscripcion')
-        ->join('actividad as ac','ac.idactividad','=','i.idactividad')
-        ->join('alumno as al','al.idalumno','=','i.idalumno')
-        ->select('i.idinscripcion','al.idalumno',DB::raw('CONCAT(al.nombre," ",al.apellido)AS alu'))
-        ->where('ac.idactividad','=',$idactividad)
-        ->orderBy('alu','desc')
-        ->paginate(10); */
-        //dd($asistencias);
-        
-        return view('asistencia.index',["actividades"=>$actividades, "asistencias"=>$asistencias]);
-    }
 }
