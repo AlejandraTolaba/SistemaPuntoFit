@@ -164,7 +164,7 @@ class InscripcionController extends Controller
             ->join('inscripcion as i','a.idalumno','=','i.idalumno')
             ->join('actividad as ac','ac.idactividad','=','i.idactividad')
             ->join('plan as p','p.idplan','=','i.idplan')
-            ->select('i.idinscripcion','a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'ac.nombre as actividad','p.nombre as plan','fecha_vencimiento_inscripcion',DB::raw('i.cantidad_clases-1 as cantidad'),'i.saldo as saldo','i.estado', 'a.foto')
+            ->select('i.idinscripcion','a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'ac.nombre as actividad','p.nombre as plan','fecha_vencimiento_inscripcion',DB::raw('i.cantidad_clases-1 as cantidad'),'i.saldo as saldo','i.estado', 'a.foto',DB::raw('date_format(a.fecha_nacimiento,"%m-%d") as fecha_nacimiento'))
             ->where('dni','LIKE',$query)
             ->where('i.estado','=','Activa')
             ->first();
@@ -185,6 +185,15 @@ class InscripcionController extends Controller
                 $asistencia->fecha = $mytime;
                 $asistencia->save();
 
+                $fecha_nac=$inscripcionA->fecha_nacimiento;
+
+                $mytime3=$mytime->toDateString();
+                $pos=strpos($mytime3,'-'); //busco la posición del primer guion, para quitar el año
+                $mes_dia=substr($mytime3,$pos+1); //obtengo la cadena de la forma "08-13"
+                
+                if($mes_dia==$fecha_nac){
+                    flash("¡¡Feliz Cumpleaños!!");
+                }
                 if (($mytime->toDateString())==($mytime2->toDateString())){
                     flash("Hoy se vence tu inscripción")->warning();
                 } else {
@@ -193,6 +202,7 @@ class InscripcionController extends Controller
                         flash("En ". $diff . " días se vence tu inscripción")->warning();
                     }
                 }
+                
                 return view('asistencia.mostrarAlumno',["inscripcionA"=>$inscripcionA]);
             } 
 
@@ -246,7 +256,7 @@ class InscripcionController extends Controller
             $movimiento->fecha=$mytime;
             $movimiento->save();
 
-            //index($alumno->idalumno);
+
             $alumno= DB::table('alumno as a')
             ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'))
             ->where('a.idalumno','=',$inscripcion->idalumno)->first();
