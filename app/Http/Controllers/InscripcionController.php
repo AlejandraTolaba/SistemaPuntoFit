@@ -100,8 +100,9 @@ class InscripcionController extends Controller
                 
                 $movimiento= new Movimiento();
                 $movimiento->concepto= "Inscripción N° ".$inscripcion->idinscripcion;
-                $movimiento->tipo="Ingreso";
+                $movimiento->tipo="INGRESO";
                 $movimiento->monto=$request->get('monto');
+                $movimiento->idforma_de_pago= $request->get("idforma_de_pago");
                 $movimiento->fecha=$mytime;
                 $movimiento->save();
                 //return Redirect::back(); //para redireccionar 
@@ -250,8 +251,9 @@ class InscripcionController extends Controller
 
             $movimiento= new Movimiento();
             $movimiento->concepto= "Act. Inscripción N° ".$inscripcion->idinscripcion;
-            $movimiento->tipo="Ingreso";
+            $movimiento->tipo="INGRESO";
             $movimiento->monto=$monto_movimiento;
+            $movimiento->idforma_de_pago= 1;
             $mytime= Carbon::now();
             $movimiento->fecha=$mytime;
             $movimiento->save();

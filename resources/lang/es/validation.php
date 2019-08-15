@@ -109,6 +109,8 @@ return [
         'imc' => 'IMC',
         'imm' => 'IMM',
         'mb' => 'MB',
+        'idforma_de_pago'=>'Seleccione forma de pago',
+        'tipo'=>'Seleccione tipo',
     ],
 ];
 
