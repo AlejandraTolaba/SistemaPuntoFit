@@ -87,4 +87,45 @@ class ProfesorController extends Controller
             return view('profesor.index',["profesores"=>$profesores,"searchText"=>$query]);
     	}
     }
+
+    public function edit($id)
+	{
+		return view("profesor.edit",["profesor"=>Profesor::findOrFail($id)]);
+    }
+    
+    public function update(ProfesorFormRequest $request, $id)
+	{
+        $profesor =Profesor::findOrFail($id);
+        $profesor->nombre = $request->get('nombrea');
+        $profesor->apellido = $request->get('apellido');
+        $img = $request->get('fotocamara');
+        // Para guardar la foto del alumno en la carpeta public/imagenes/alumnos
+        if ($img!=""){
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $image = base64_decode($img);
+            $temp_name = $this->random_string();
+            $extension="png";
+            $nombrefoto=$temp_name.date('Y-m-d').'.'.$extension; 
+            Image::make($image)->resize(144,144)->save(public_path('/imagenes/profesores/'.$nombrefoto));
+            $profesor->foto=$nombrefoto;
+        } else {
+            $profesor->foto=$profesor->foto;
+        }
+        $profesor->dni = $request->get('dni');
+        $mytime1 = Carbon::createFromFormat('Y-m-d',$request->get('fecha_nacimiento'));
+        $profesor->fecha_nacimiento = $mytime1->toDateString();
+        $profesor->sexo = $request->get('sexo');
+		$profesor->domicilio = $request->get('domicilio');
+		$profesor->telefono_celular = $request->get('telefono_celular');
+		$profesor->numero_contacto = $request->get('numero_contacto');
+        $profesor->email = $request->get('email');
+        //$alumno->update();
+        if ( $profesor->update())
+        {
+            flash("Los cambios se guardaron exitosamente")->success();
+            return Redirect::to('profesor/'); //para redireccionar 
+        } 
+        //return Redirect::to('alumno');
+	}
 }

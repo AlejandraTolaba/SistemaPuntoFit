@@ -27,6 +27,7 @@
                                         <th>DNI</th>
 										<th>Teléfono</th>
                                         <th>Estado</th>
+                                        <th>Opción</th>
                                     </thead>
                                     @foreach ($profesores as $p)
                                         <tr> 
@@ -36,6 +37,7 @@
                                             <td style="vertical-align:middle;">{{ $p -> dni }}</td>
 											<td style="vertical-align:middle;">{{ $p -> telefono_celular }}</td>
                                             <td style="vertical-align:middle;">{{ $p -> estado }}</td>
+                                            <td style="vertical-align:middle;"><a href="{{URL::action('ProfesorController@edit',$p->idprofesor)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a></td>
                                         </tr>
                                     @endforeach
                                 </table>
