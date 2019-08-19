@@ -90,3 +90,5 @@ Route::get('cumpleaños','CumpleañosController@mostrarCumpleañeros');
 
 Route::get('actividad/{idactividad}/mostrarInscripciones','ActividadController@mostrarInscripcionesPorActividad');
 Route::post('actividad/{idactividad}/mostrarInscripciones','ActividadController@mostrarInscripcionesPorActividadDesdeHasta');
+
+Route::resource('movimiento','MovimientoController');

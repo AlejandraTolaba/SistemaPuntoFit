@@ -15,7 +15,8 @@ class Movimiento extends Model
     protected $fillable= [
         'concepto',
         'tipo',
-        'monto'
+        'monto',
+        'idforma_de_pago'
     ];
 
     protected $dates = [

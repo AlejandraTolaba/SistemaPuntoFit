@@ -124,7 +124,12 @@
                 <span>Asistencia</span>
               </a>
             </li>
-            
+            <li class="treeview">
+            <a href="{{url('movimiento/create')}}">
+                <i class="fa fa-usd"></i>
+                <span>Movimiento</span>
+              </a>
+            </li>
             <li class="treeview">
             <a href="{{url('cumpleaños/')}}">
                 <i class="fa fa-birthday-cake"></i>
