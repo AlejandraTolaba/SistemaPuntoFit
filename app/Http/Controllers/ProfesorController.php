@@ -126,6 +126,11 @@ class ProfesorController extends Controller
             flash("Los cambios se guardaron exitosamente")->success();
             return Redirect::to('profesor/'); //para redireccionar 
         } 
-        //return Redirect::to('alumno');
-	}
+    }
+    
+    public function show($id) 
+    {
+        $profesor = Profesor::findOrFail($id);
+		return view("profesor.show",['profesor'=>$profesor]);
+    } 
 }

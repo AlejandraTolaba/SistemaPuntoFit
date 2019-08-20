@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('contenido')
     <div class="row">
+    <div class="col-lg-10 col-md-offset-1">
+        @include('flash::message')
+    </div>
         <div class="col-lg-10 col-md-offset-1">
             <div class="box box-success">
                 <div class="box-header with-border">
@@ -27,7 +30,7 @@
                                         <th>DNI</th>
 										<th>Teléfono</th>
                                         <th>Estado</th>
-                                        <th>Opción</th>
+                                        <th>Opciones</th>
                                     </thead>
                                     @foreach ($profesores as $p)
                                         <tr> 
@@ -37,7 +40,10 @@
                                             <td style="vertical-align:middle;">{{ $p -> dni }}</td>
 											<td style="vertical-align:middle;">{{ $p -> telefono_celular }}</td>
                                             <td style="vertical-align:middle;">{{ $p -> estado }}</td>
-                                            <td style="vertical-align:middle;"><a href="{{URL::action('ProfesorController@edit',$p->idprofesor)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a></td>
+                                            <td style="vertical-align:middle;">
+                                                <a href="{{URL::action('ProfesorController@show',$p->idprofesor)}}" ><button name="Visualizar" type="submit" class="btn btn-success"><i class="fa fa-user"></i> Visualizar</button></a>
+                                                <a href="{{URL::action('ProfesorController@edit',$p->idprofesor)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </table>

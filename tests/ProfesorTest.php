@@ -92,4 +92,20 @@ class ProfesorTest extends TestCase
                 'email' => 'maryb@gmail.com'
                 ]);
     }
+
+    public function test_ver_datos_de_un_profesor()
+    {
+        $this->visit('profesor/1')
+            ->see('DATOS PERSONALES')
+            ->see('Nombre: María Gutierres', 'nombre')
+            ->see('DNI: 35762123', 'dni')
+            ->see('Fecha de Nacimiento: 10-09-2016','fecha_nacimiento')
+            ->see('Sexo: Femenino','sexo')
+            ->see('Domicilio: Vaqueros', 'domicilio' )
+            ->see('Telefono: 154426787', 'telefono' )
+            ->see('Contacto: 4253711', 'contacto' )
+            ->see('Email: mary@gmail.com', 'email' )
+            ->see('Volver')
+            ->click('Volver');
+    }
 }
