@@ -28,7 +28,7 @@ class ProfesorFormRequest extends Request
             'fecha_nacimiento' => 'date',
             'nombrea'=>'required|max:45',
             'apellido'=>'required|max:45',
-            'dni'=>'required|max:8|unique:profesor',
+            'dni'=>'required|max:8',
             'fecha_nacimiento'=>'required',
             'sexo'=>'required|max:1',
             'domicilio'=>'required|max:250',

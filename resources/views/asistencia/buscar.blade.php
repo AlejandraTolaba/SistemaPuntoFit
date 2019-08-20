@@ -29,7 +29,7 @@
                         <a href="{{ route('movimiento.create') }}"><button class="btn bg-purple"><i class="fa fa-usd"></i> Agregar Movimiento</button></a>
                         </div>
                         <div class="btn-group" role="group">
-                        <a href="asistencia/index"><button class="btn btn-primary"><i class="fa fa-list"></i> Listar Asistencia</button></a>
+                        <a href="asistencia/mostrarAsistencias"><button class="btn btn-primary"><i class="fa fa-list"></i> Listar Asistencia</button></a>
                         </div>
                     </div>
     

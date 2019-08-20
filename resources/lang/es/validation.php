@@ -101,6 +101,7 @@ return [
         'nombre' => 'Nombre',
         'nombrea' => 'Nombre (*)',
         'telefono_celular' => 'Teléfono - Celular (*)',
+        'fecha_nacimiento' => 'Fecha de nacimiento (*)',
         'precio' => 'Precio',
         'apellido' => 'Apellido (*)',
         'dni' => 'DNI (*)',

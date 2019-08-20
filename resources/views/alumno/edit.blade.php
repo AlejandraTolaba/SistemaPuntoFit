@@ -125,9 +125,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="form-group">
-								{!! Field::text('email',['class'=>'form-control','placeholder'=>'email@ejemplo.com'])!!}
-								<!-- <input type="email" name="email" value="{{$alumno->email}}" class="form-control" placeholder="email@ejemplo.com" aria-describedby="basic-addon2">
-								<span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope pull-right"></i></span> -->
+							<label for="email">Email</label>
+							<div class="input-group">
+								<input type="email" name="email" value="{{$alumno->email}}" class="form-control" placeholder="email@ejemplo.com" aria-describedby="basic-addon2">
+								<span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope pull-right"></i></span>
 							</div>
 						</div>
 					</div>

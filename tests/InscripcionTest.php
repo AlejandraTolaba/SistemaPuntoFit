@@ -51,7 +51,6 @@ class InscripcionTest extends TestCase
         ->see('Saldo')
         ->press('')
         ->seePageIs('asistencia');
-        
     }
 
     public function test_acceso_directo_a_agregar_alumno(){
@@ -109,4 +108,46 @@ class InscripcionTest extends TestCase
             ]);
     }
 
+    public function test_listar_asistencias_del_dia(){
+        $this->visit('asistencia/mostrarAsistencias')
+        ->see('Asistencias')
+        ->see('16/08/2019','fecha')
+        ->see('Total: 2','cant')
+        //->see('2','cantidad')
+        ->seeInElement("table",'Mirian Aldana Quispe')
+        ->seeInElement("table",'Emilse Tolaba')
+        ->dontSeeInElement("table",'Alejandra Tolaba');
+    }
+
+    public function test_listar_asistencias_de_un_dia(){
+        $this->visit('asistencia/mostrarAsistencias')
+        ->see('Asistencias')
+        ->see('15/08/2019','fecha')
+        ->see('Total: 2','cant')
+        ->seeInElement("table",'Mirian Aldana Quispe')
+        ->seeInElement("table",'Emilse Tolaba')
+        ->dontSeeInElement("table",'Alejandra Tolaba');
+    }
+
+    public function test_filtrar_asistencias_por_fecha(){
+        $this->visit('asistencia/mostrarAsistencias')
+        ->see('Asistencias')
+        ->type('2019-08-14', 'fecha' )
+        ->press('filtrar')
+        ->see('Total: 2','cant')
+        ->seeInElement("table",'Pedro Lopez')
+        ->seeInElement("table",'Mirian Aldana Quispe');
+        //->dontSeeInElement("table",'Pedro Lopez');
+    }
+
+    public function test_filtrar_asistencias_actividad(){
+        $this->visit('asistencia/mostrarAsistencias')
+        ->see('Asistencias')
+        ->see('Seleccione una actividad')
+        ->select('Spinning', 'actividad' )
+        ->see('Total: 1','cant')
+        //->seeInElement("table",'Mirian Aldana Quispe')
+        ->seeInElement("table",'Emilse Tolaba')
+        ->dontSeeInElement("table",'Alejandra Tolaba');
+    }
 }

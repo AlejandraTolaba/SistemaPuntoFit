@@ -34,8 +34,6 @@ Route::get('asistencia','InscripcionController@buscar');
 Route::get('asistencia/mostrarAlumno','InscripcionController@mostrarAlumno');
 Route::get('asistencia/cambiarCantidad/{idinscripcion}','InscripcionController@updateCantidad');
 
-Route::get('asistencia/index','AsistenciaController@index');
-
 Route::get('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@create');
 Route::post('alumno/fichaControlCorporal/create/{idalumno}','FichaControlController@store');
 
@@ -50,6 +48,34 @@ Route::get('dropdown', function(){
 	return $planes;
 	//dd($planes);
 });
+
+Route::get('dropdown2', function(){
+	$id = Input::get('option');
+	$asistencias = DB::table('asistencia as a')
+		->join('inscripcion as i','a.idinscripcion','=','i.idinscripcion')
+		->join('actividad as ac','ac.idactividad','=','i.idactividad')
+		->join('alumno as al','al.idalumno','=','i.idalumno')
+		->orderBy('al.nombre')
+		->where ('ac.idactividad','=', $id)
+		->where ('a.fecha','=', DB::raw('curdate()'))
+		->lists('al.idalumno',DB::raw('CONCAT(al.nombre," ",al.apellido)AS alu'));
+	return $asistencias;
+});
+
+Route::get('dropdown3', function(){
+	$id = Input::get('option');
+	$cantidad = DB::table('asistencia as a')
+		->join('inscripcion as i','a.idinscripcion','=','i.idinscripcion')
+		->join('actividad as ac','ac.idactividad','=','i.idactividad')
+		->join('alumno as al','al.idalumno','=','i.idalumno')
+		->where('a.fecha','=', DB::raw('curdate()'))
+		->where ('ac.idactividad','=', $id)
+		->lists(DB::raw('COUNT(idasistencia)'));
+	return $cantidad;
+});
+
+Route::get('asistencia/mostrarAsistencias','AsistenciaController@index');
+Route::post('asistencia/mostrarAsistencias','AsistenciaController@mostrarAsistenciaPorDia');
 
 Route::post('actividad/{idactividad}/plan/create/','PlanController@store');
 

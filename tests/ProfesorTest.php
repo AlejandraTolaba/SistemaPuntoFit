@@ -68,4 +68,28 @@ class ProfesorTest extends TestCase
              ->dontSeeInElement("table",'Marisel');
             
     }
+
+    public function test_modificar_datos_de_un_profesor()
+    {
+        $this->visit('profesor/2/edit')
+            ->see('Editar datos de María Ibarra')
+            ->type('María Beatriz','nombrea')
+            ->type('40157997','dni')
+            ->type('San Lorenzo','domicilio')
+            ->type('154426788','telefono_celular')
+            ->type('4921679','numero_contacto')
+            ->type('maryb@gmail.com','email')
+            ->see('Confirmar')
+            ->see('Cancelar')
+            ->press('Confirmar')
+            ->seePageIs('profesor');
+            $this->seeInDatabase('profesor', [
+                'nombre'=>'María Beatriz',
+                'dni' => '40157997',
+                'domicilio' => 'San Lorenzo',
+                'telefono_celular' => '154426788',
+                'numero_contacto' => '4921679',
+                'email' => 'maryb@gmail.com'
+                ]);
+    }
 }
