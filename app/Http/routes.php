@@ -66,3 +66,5 @@ Route::get('actividad/{idactividad}/mostrarInscripciones','ActividadController@m
 Route::post('actividad/{idactividad}/mostrarInscripciones','ActividadController@mostrarInscripcionesPorActividadDesdeHasta');
 
 Route::resource('movimiento','MovimientoController');
+Route::post('movimiento/create','MovimientoController@store');
+Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
