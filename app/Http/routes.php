@@ -94,3 +94,4 @@ Route::post('actividad/{idactividad}/mostrarInscripciones','ActividadController@
 Route::resource('movimiento','MovimientoController');
 Route::post('movimiento/create','MovimientoController@store');
 Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
+Route::get('movimiento/reporte','MovimientoController@crearReporteMovimientos');
