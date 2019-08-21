@@ -159,7 +159,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Styde\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
