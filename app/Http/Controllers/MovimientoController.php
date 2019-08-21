@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use sisPuntoFit\Http\Requests\MovimientoFormRequest;
 use DB;
 use Carbon\Carbon;
+use Mpdf\Mpdf;
 
 class MovimientoController extends Controller
 {
@@ -45,6 +46,7 @@ class MovimientoController extends Controller
         $formas_de_pago = DB::table('forma_de_pago')->get();
         return view('movimiento.create',["formas_de_pago"=>$formas_de_pago]);
     }
+
     public function store(MovimientoFormRequest $request)
     {   
         $movimiento= new Movimiento();
@@ -83,9 +85,9 @@ class MovimientoController extends Controller
         return view('movimiento.index',["movimientos"=>$movimientos,"desde"=>$desde,"hasta"=>$hasta,"totalIngreso"=>$totalIngreso,"totalEgreso"=>$totalEgreso,"total"=>$total]);
     }
 
-    public function crearReporteMovimientos(Request $request){
-        $desde=Carbon::createFromFormat('Y-m-d',$request->get('desde'))->toDateString();
-        $hasta=Carbon::createFromFormat('Y-m-d',$request->get('hasta'))->toDateString();
+    public function show(){
+        $desde=Carbon::now()->toDateString();
+        $hasta=Carbon::now()->toDateString();
 
         $movimientos=DB::table('movimiento_de_caja as m')
         ->join('forma_de_pago as f','m.idforma_de_pago','=','f.idforma_de_pago')
@@ -105,14 +107,20 @@ class MovimientoController extends Controller
         ->where('tipo','=','EGRESO')
         ->whereBetween('fecha',[$desde,$hasta])
         ->first();
-
+        $total=$totalIngreso->totalIngreso-$totalEgreso->totalEgreso;
         $vistaurl="movimiento.reporte";
  
         //$date = date('Y-m-d');
-        $view= \View::make($vistaurl,compact('movimientos','totalEgreso','totalIngreso','desde','hasta'))->render();
+        /* $view= \View::make($vistaurl,compact('movimientos','totalEgreso','totalIngreso','desde','hasta','total'))->render();
         $pdf=\App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
-        return $pdf->stream();
+        return $pdf->stream(); */
+
+        $html = view('movimiento.reporte',["movimientos"=>$movimientos,"desde"=>$desde,"hasta"=>$hasta,"totalIngreso"=>$totalIngreso,"totalEgreso"=>$totalEgreso,"total"=>$total]);
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('movimientos.pdf', "I");
     }
 }
