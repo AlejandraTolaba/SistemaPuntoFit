@@ -3,13 +3,56 @@
   <head>
     <meta charset="utf-8">
     <title>Reporte de Movimientos</title>
-    <link rel="stylesheet" href="{{'css/pdf.css'}}" media="all" />
+    <style>
+        h1{
+            border-top: 1px solid  #5D6975;
+            border-bottom: 1px solid  #5D6975;
+            color: #5D6975;
+            font-size: 2.4em;
+            line-height: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        h2,h3{
+            color: #5D6975;
+            font-weight: normal;
+            text-align: left;
+        }
+        header {
+            padding: 5px 0;
+            margin-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 10px;
+        }
+        table th,
+        table td {
+            text-align: center;
+            white-space: nowrap;        
+            font-weight: normal;
+        }
+        table th {
+            padding: 5px 20px;
+            color: #5D6975;
+            border-bottom: 1px solid #C1CED9;
+            white-space: nowrap;        
+            font-weight: normal;
+        }
+        .table-bordered th{
+            color: black;
+        }
+        .movements{
+            margin-left: 210px;
+        }
+    </style>
   </head>
   <body >
     <header class="clearfix">
-      <div id="logo">
-        <img src="{{asset('/imagenes/pf/logo1.jpg')}}" >
-      </div>
       <h1>Reporte de Movimientos</h1>
     </header>
             @if($desde == $hasta)
@@ -18,37 +61,15 @@
                 <h2 name="titulo" class="box-tittle">Movimientos desde {{date("d-m-Y",strtotime($desde))}} hasta {{date("d-m-Y",strtotime($hasta))}}</h2>
             @endif
             <main>
-                <div>
-                    <div class="row totales">
-                        <div class="col-lg-4">
-                            <div class="input-group">
-                                <span style="background-color: #F2F4F4;" class="input-group-addon" id="basic-addon2">TOTAL INGRESOS</span>	
-                                <input style="background-color: white;" readonly type ="text" name="totalIngreso" value="${{$totalIngreso->totalIngreso}}" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="input-group">	
-                                <span style=" background-color: #F2F4F4" class="input-group-addon" id="basic-addon2">TOTAL EGRESOS</span>
-                                <input style="background-color: white;" readonly type ="text" name="totalEgreso" value="${{$totalEgreso->totalEgreso}}" class="form-control">	
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="input-group">	
-                                <span style=" background-color: #F2F4F4" class="input-group-addon" id="basic-addon2">TOTAL CAJA</span>
-                                <input style="background-color: white;" readonly type ="text" name="total" value="${{$total}}" class="form-control">	
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table>
-                    <thead>
+                <table style="border-bottom:2px;">
+                    <tr style="background-color: #F2F4F4;">
                         <th>Concepto</th>
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Tipo</th>
                         <th>Forma de pago</th>
                         <th>Monto</th>
-                    </thead>
+                    </tr> 
                     <tbody>
                         @foreach ($movimientos as $mov)
                         <tr>
@@ -62,6 +83,20 @@
                         @endforeach
                     </tbody>
                 </table> 
+                <div class="col-xs-6 movements">
+                    <table class="table table-bordered" style="width: 150px">
+                        <tr style="background-color: #F2F4F4;">
+                            <th  class="text-center">TOTAL INGRESOS</th>
+                            <th  class="text-center">TOTAL EGRESOS</th>
+                            <th  class="text-center">TOTAL CAJA</th>
+                        </tr>
+                        <tr>
+                            <td  class="text-center">${{$totalIngreso->totalIngreso}}</td>
+                            <td  class="text-center">${{$totalEgreso->totalEgreso}}</td>
+                            <td  class="text-center">${{$total}}</td>   
+                        </tr>
+                    </table>
+    </div>
             </main>
     <footer>
     </footer>  
