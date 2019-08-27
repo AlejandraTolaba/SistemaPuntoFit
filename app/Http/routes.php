@@ -97,11 +97,4 @@ Route::get('movimiento/reporte','MovimientoController@show');
 Route::resource('movimiento','MovimientoController');
 Route::post('movimiento/create','MovimientoController@store');
 Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
-<<<<<<< HEAD
-
 Route::get('movimiento/reporte/{startDate}/{endDate}/','MovimientoController@generarReporte')->name('movimientoReporte');
-
-
-=======
-Route::get('movimiento/reporte/{startDate}/{endDate}','MovimientoController@generarReporte')->name('movimientoReporte');
->>>>>>> origin/Sprint4
