@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Input;
+use Mpdf\Mpdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,4 +97,7 @@ Route::get('movimiento/reporte','MovimientoController@show');
 Route::resource('movimiento','MovimientoController');
 Route::post('movimiento/create','MovimientoController@store');
 Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
-Route::get('movimiento/reporte','MovimientoController@show');
+
+Route::get('movimiento/reporte/{startDate}/{endDate}/','MovimientoController@generarReporte')->name('movimientoReporte');
+
+

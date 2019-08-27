@@ -85,10 +85,7 @@ class MovimientoController extends Controller
         return view('movimiento.index',["movimientos"=>$movimientos,"desde"=>$desde,"hasta"=>$hasta,"totalIngreso"=>$totalIngreso,"totalEgreso"=>$totalEgreso,"total"=>$total]);
     }
 
-    public function show(){
-        $desde=Carbon::now()->toDateString();
-        $hasta=Carbon::now()->toDateString();
-
+    public function generarReporte($desde,$hasta){
         $movimientos=DB::table('movimiento_de_caja as m')
         ->join('forma_de_pago as f','m.idforma_de_pago','=','f.idforma_de_pago')
         ->select('concepto','fecha','hora','tipo','f.nombre as forma','monto')
@@ -108,19 +105,28 @@ class MovimientoController extends Controller
         ->whereBetween('fecha',[$desde,$hasta])
         ->first();
         $total=$totalIngreso->totalIngreso-$totalEgreso->totalEgreso;
-        $vistaurl="movimiento.reporte";
- 
-        //$date = date('Y-m-d');
-        /* $view= \View::make($vistaurl,compact('movimientos','totalEgreso','totalIngreso','desde','hasta','total'))->render();
-        $pdf=\App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
 
-        return $pdf->stream(); */
-
-        $html = view('movimiento.reporte',["movimientos"=>$movimientos,"desde"=>$desde,"hasta"=>$hasta,"totalIngreso"=>$totalIngreso,"totalEgreso"=>$totalEgreso,"total"=>$total]);
+        $html = view('movimiento.reporte')->with('movimientos',$movimientos)
+                                            ->with('total',$total)
+                                            ->with('totalIngreso',$totalIngreso)
+                                            ->with('totalEgreso',$totalEgreso)
+                                            ->with('desde',$desde)
+                                            ->with('hasta',$hasta);
         $mpdf = new mPDF();
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         $mpdf->Output('movimientos.pdf', "I");
     }
+    public function imprimir(){
+        /* $pdf = \PDF::loadView('ejemplo');
+        return $pdf->download('ejemplo.pdf'); */
+        /* $view= \View::make('ejemplo');
+        $pdf=\App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);  */
+        $html = view('ejemplo');
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('ejemplo.pdf', "I");
+   }
 }
