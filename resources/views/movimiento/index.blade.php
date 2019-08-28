@@ -41,28 +41,7 @@
                     {{Form::close()}} 
                 </div>
                 <div class="box-body">
-                    @if($movimientos->total()!=0)
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="input-group">
-                                    <span style="background-color: #F2F4F4;" class="input-group-addon" id="basic-addon2">TOTAL INGRESOS</span>	
-                                    <input style="background-color: white;" readonly type ="text" name="totalIngreso" value="${{$totalIngreso->totalIngreso}}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="input-group">	
-                                    <span style=" background-color: #F2F4F4" class="input-group-addon" id="basic-addon2">TOTAL EGRESOS</span>
-                                    <input style="background-color: white;" readonly type ="text" name="totalEgreso" value="${{$totalEgreso->totalEgreso}}" class="form-control">	
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="input-group">	
-                                    <span style=" background-color: #F2F4F4" class="input-group-addon" id="basic-addon2">TOTAL CAJA</span>
-                                    <input style="background-color: white;" readonly type ="text" name="total" value="${{$total}}" class="form-control">	
-                                </div>
-                            </div>
-                        </div>
+                    @if($movimientos!=[])
                         <br>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-condensed table-hover text-center"> <!-- table-striped -->
@@ -85,10 +64,37 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            <br>
+                            <table class="table table-bordered">
+                                    <tr>
+                                        <td style="background-color: #F2F4F4;" class="text-center">INGRESOS EN CONTADO</td>
+                                        <td style="background-color: #F2F4F4;" class="text-center">EGRESOS EN CONTADO</td>
+                                    </tr>
+                                    <tr>
+                                        <td  class="text-center">${{$totalIngreso->totalIngreso}}</td>
+                                        <td  class="text-center">${{$totalEgreso->totalEgreso}}</td>       
+                                    </tr>
+                                </table>
+                            
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL CONTADO</td>
+                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL CRÉDITO</td>
+                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL DÉBITO</td>
+                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL DÉBITO AUTOMÁTICO</td>
+                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL</td>
+                                </tr>
+                                <tr>
+                                    <td  class="text-center">${{$totales->totalContado}}</td>
+                                    <td  class="text-center">${{$totales->totalCredito}}</td>                        
+                                    <td  class="text-center">${{$totales->totalDebito}}</td>
+                                    <td  class="text-center">${{$totales->totalDebitoAutomatico}}</td>
+                                    <td  class="text-center">${{$total->total}}</td>
+                                </tr>
+                            </table>
+                            <br>
                         </div>
-                        <div align="center">
-                            {{$movimientos->render()}}
-                        </div>
+                        
                     @else
                     <div class="row" align="center">
                         <br>
