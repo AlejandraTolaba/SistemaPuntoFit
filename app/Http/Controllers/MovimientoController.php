@@ -107,7 +107,7 @@ class MovimientoController extends Controller
         ->select('concepto','fecha','hora','tipo','f.nombre as forma','monto')
         ->whereBetween('fecha',[$desde,$hasta])
         ->orderBy('idmovimientodecaja','desc')
-        ->paginate(20);
+        ->get();
         $totalIngreso=DB::table('movimiento_de_caja as m')
         ->select(DB::raw('ifnull(sum(monto),0) as totalIngreso'))
         ->where('idforma_de_pago','=',1)
@@ -128,7 +128,9 @@ class MovimientoController extends Controller
                                             ->with('totalEgreso',$totalEgreso)
                                             ->with('desde',$desde)
                                             ->with('hasta',$hasta);
-        $mpdf = new mPDF();
+        $mpdf = new mPDF([
+            "format" => "A4",
+        ]);
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         $mpdf->Output('movimientos.pdf', "I");
