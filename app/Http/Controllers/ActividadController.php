@@ -130,7 +130,7 @@ class ActividadController extends Controller
         ->select('i.idinscripcion',DB::raw('CONCAT(al.nombre," ",al.apellido) as alumno'),'p.nombre as plan','fecha_inscripcion','i.estado','a.nombre as actividad')
         ->where ('i.idactividad','=', $id)
         ->orderBy('idinscripcion','desc')
-        ->paginate(20);
+        ->get();
         return view('actividad.mostrarInscripciones',["inscripciones"=>$inscripciones,"actividad"=>$actividad,"desde"=>$desde,"hasta"=>$hasta]);
     }
 
@@ -147,7 +147,7 @@ class ActividadController extends Controller
         ->where ('i.idactividad','=', $id)
         ->whereBetween('fecha_inscripcion',[$desde,$hasta])
         ->orderBy('idinscripcion','desc')
-        ->paginate(20);
+        ->get();
         return view('actividad.mostrarInscripciones',["inscripciones"=>$inscripciones,"actividad"=>$actividad,"desde"=>$desde,"hasta"=>$hasta]);
     }
 }

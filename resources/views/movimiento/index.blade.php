@@ -65,24 +65,24 @@
                                 @endforeach
                             </table>
                             <br>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered ingresoEgresoContado">
                                     <tr>
-                                        <td style="background-color: #F2F4F4;" class="text-center">INGRESOS EN CONTADO</td>
-                                        <td style="background-color: #F2F4F4;" class="text-center">EGRESOS EN CONTADO</td>
+                                        <td style="background-color: #EAECEE;" class="text-center">INGRESOS EN CONTADO</td>
+                                        <td style="background-color: #EAECEE;" class="text-center">EGRESOS EN CONTADO</td>
                                     </tr>
                                     <tr>
-                                        <td  class="text-center">${{$totalIngreso->totalIngreso}}</td>
-                                        <td  class="text-center">${{$totalEgreso->totalEgreso}}</td>       
+                                        <td  name="ingresoContado" class="text-center">${{$totalIngreso->totalIngreso}}</td>
+                                        <td  name="egresoContado" class="text-center">${{$totalEgreso->totalEgreso}}</td>       
                                     </tr>
                                 </table>
                             
                             <table class="table table-bordered">
                                 <tr>
-                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL CONTADO</td>
-                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL CRÉDITO</td>
-                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL DÉBITO</td>
-                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL DÉBITO AUTOMÁTICO</td>
-                                    <td style="background-color: #F2F4F4;" class="text-center">TOTAL</td>
+                                    <td style="background-color: #EAECEE;" class="text-center">TOTAL CONTADO</td>
+                                    <td style="background-color: #EAECEE;" class="text-center">TOTAL CRÉDITO</td>
+                                    <td style="background-color: #EAECEE;" class="text-center">TOTAL DÉBITO</td>
+                                    <td style="background-color: #EAECEE;" class="text-center">TOTAL DÉBITO AUTOMÁTICO</td>
+                                    <td style="background-color: #EAECEE;" class="text-center">TOTAL</td>
                                 </tr>
                                 <tr>
                                     <td  class="text-center">${{$totales->totalContado}}</td>
