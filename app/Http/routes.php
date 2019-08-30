@@ -97,3 +97,6 @@ Route::resource('movimiento','MovimientoController');
 Route::post('movimiento/create','MovimientoController@store');
 Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
 Route::get('movimiento/reporte/{startDate}/{endDate}','MovimientoController@generarReporte')->name('movimientoReporte');
+
+Route::get('alumno/fichaControlCorporal/{idficha}/edit','FichaControlController@edit');
+Route::patch('alumno/fichaControlCorporal/{idficha}','FichaControlController@update')->name('alumno.fichaControlCorporal.update');

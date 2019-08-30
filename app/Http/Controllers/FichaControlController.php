@@ -52,8 +52,8 @@ class FichaControlController extends Controller
             ->where('a.idalumno','=',$idalumno)->first();
                 
             $fichas=DB::table('ficha_control as f')
-            ->select('fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
-            ->where ('f.idalumno','=', $idalumno)
+            ->select('idficha_control as idficha','fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
+            ->where ('f.idalumno','=', $ficha->idalumno)
             ->orderBy('fecha_registro','desc')
             ->paginate(10);
         
@@ -68,7 +68,7 @@ class FichaControlController extends Controller
         ->where('a.idalumno','=',$idalumno)->first();
             
         $fichas=DB::table('ficha_control as f')
-        ->select('fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
+        ->select('idficha_control as idficha','fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
         ->where ('f.idalumno','=', $idalumno)
         ->orderBy('fecha_registro','desc')
         ->paginate(10);
@@ -76,4 +76,37 @@ class FichaControlController extends Controller
         return view('alumno.fichaControlCorporal.index',["fichas"=>$fichas,"alumno"=>$alumno]);
 
     }
+
+    public function edit($idficha)
+	{
+        $ficha =FichaControl::findOrFail($idficha);
+        $alumno = Alumno::find($ficha->idalumno);
+		return view('alumno.fichaControlCorporal.edit',["ficha"=>$ficha, "alumno"=>$alumno]);
+    }
+
+    public function update(FichaFormRequest $request, $id)
+	{
+        $ficha = FichaControl::findOrFail($id);
+        $ficha->peso = $request->get('peso');
+        $ficha->imc = $request->get('imc');
+        $ficha->edad_corporal = $request->get('edad_corporal');
+        $ficha->grasa_corporal = $request->get('grasa_corporal');
+        $ficha->imm = $request->get('imm');
+        $ficha->mb = $request->get('mb');
+        $ficha->grasa_viceral = $request->get('grasa_viceral');
+        if ( $ficha->update())
+        {
+            $alumno= DB::table('alumno as a')
+            ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
+            ->where('a.idalumno','=',$ficha->idalumno)->first();
+            $fichas=DB::table('ficha_control as f')
+            ->select('idficha_control as idficha','fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
+            ->where ('f.idalumno','=', $ficha->idalumno)
+            ->orderBy('fecha_registro','desc')
+            ->paginate(10);
+            flash("Los cambios se guardaron exitosamente")->success();
+            return view('alumno.fichaControlCorporal.index',["fichas"=>$fichas,"alumno"=>$alumno]);
+        } 
+    }
+
 }
