@@ -56,4 +56,30 @@ class FichaControlTest extends TestCase
             ->see('MB')
             ->see('Grasa Visceral');
     }
+
+    public function test_modificar_datos_de_una_ficha()
+    {
+        $this->visit('alumno/fichaControlCorporal/1/edit')
+            ->see('Editar Ficha de Control Corporal')
+            ->type(46,'peso')
+            ->type(21.1,'imc')
+            ->type(25,'edad_corporal')
+            ->type(20.4,'grasa_corporal')
+            ->type(21.5,'imm')
+            ->type(20,'mb')
+            ->type(21,'grasa_viceral')
+            ->see('Confirmar')
+            ->see('Cancelar')
+            ->press('Confirmar')
+            ->seePageIs('alumno/fichaControlCorporal/1');
+            $this->seeInDatabase('ficha_control', [
+                'peso'=>46,
+                'imc' => 21.1,
+                'edad_corporal' => 25,
+                'grasa_corporal' => 20.4,
+                'imm' => 21.5,
+                'mb' => 20,
+                'grasa_viceral' => 21
+                ]);
+    }
 }

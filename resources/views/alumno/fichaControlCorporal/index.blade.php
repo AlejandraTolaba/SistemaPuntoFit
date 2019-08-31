@@ -43,6 +43,7 @@
                                         <th>IMM</th>
                                         <th>MB</th>
                                         <th>Grasa Visceral</th>
+                                        <th>Opción</th>
                                     </thead>
                                     @foreach ($fichas as $ficha)
                                         <tr>
@@ -54,6 +55,9 @@
                                             <td>{{ $ficha -> imm }}</td>
                                             <td>{{ $ficha -> mb }}</td>
                                             <td>{{ $ficha -> grasa_viceral }}</td>
+                                            <td>
+                                                <a href="{{URL::action('FichaControlController@edit',$ficha->idficha)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </table>

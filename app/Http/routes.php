@@ -99,4 +99,7 @@ Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
 Route::get('movimiento/reporte/{startDate}/{endDate}','MovimientoController@generarReporte')->name('movimientoReporte');
 
 Route::get('alumno/inscripcion/{idinscripcion}/mostrarFechasInscripcion','InscripcionController@mostrarFechasInscripcion');
-Route::post('alumno/inscripcion/{idinscripcion}/mostrarfechasInscripcion','InscripcionController@actualizarFechaVencimiento');
+Route::post('alumno/inscripcion/{idinscripcion}/mostrarFechasInscripcion','InscripcionController@actualizarFechaVencimiento');
+
+Route::get('alumno/fichaControlCorporal/{idficha}/edit','FichaControlController@edit');
+Route::patch('alumno/fichaControlCorporal/{idficha}','FichaControlController@update')->name('alumno.fichaControlCorporal.update');
