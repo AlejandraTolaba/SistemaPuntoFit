@@ -97,3 +97,6 @@ Route::resource('movimiento','MovimientoController');
 Route::post('movimiento/create','MovimientoController@store');
 Route::post('movimiento','MovimientoController@mostrarMovimientosDesdeHasta');
 Route::get('movimiento/reporte/{startDate}/{endDate}','MovimientoController@generarReporte')->name('movimientoReporte');
+
+Route::get('alumno/inscripcion/{idinscripcion}/mostrarFechasInscripcion','InscripcionController@mostrarFechasInscripcion');
+Route::post('alumno/inscripcion/{idinscripcion}/mostrarfechasInscripcion','InscripcionController@actualizarFechaVencimiento');

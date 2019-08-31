@@ -19,10 +19,10 @@ class InscripcionTest extends TestCase
             ->see('nombre')
             ->see('fecha_inscripcion')
             ->select(1,'idactividad')
-            ->select(0,'idplan')
+            ->type(0,'idplan')
             ->see('precio')
             ->select(2,'idforma_de_pago')
-            ->type(400,'monto')
+            ->type(100,'monto')
             ->see('Guardar')
             ->see('Cancelar')
             ->press('Guardar');
@@ -34,7 +34,7 @@ class InscripcionTest extends TestCase
             'idforma_de_pago'=>2,
             'idactividad'=>1,
             'cantidad_clases'=>8,
-            'monto'=>400.00,
+            'monto'=>100.00,
             'estado'=>'Activa'
             ]);
     }
@@ -149,5 +149,23 @@ class InscripcionTest extends TestCase
         //->seeInElement("table",'Mirian Aldana Quispe')
         ->seeInElement("table",'Emilse Tolaba')
         ->dontSeeInElement("table",'Alejandra Tolaba');
+    }
+
+    public function test_actualizar_fecha_vencimiento_inscripcion()
+    {
+        $this->visit('/alumno/inscripcion/10/mostrarFechasInscripcion')
+            ->see('Actualizar Vencimiento')
+            ->see('Nombre: Walter Benitez','nombre')
+            ->see('Fecha:30-08-2019','fecha')
+            ->see('N° de Inscripción: 10','inscripcion')
+            ->see('Actividad: Zumba','actividad')
+            ->type('2019-10-27','fecha_vencimiento_inscripcion')
+            ->see('Confirmar')
+            ->Press('Confirmar');
+            $this->seeInDatabase('inscripcion', [
+                'idinscripcion'=>10,
+                'fecha_vencimiento_inscripcion'=>'2019-10-27' 
+            ]);
+
     }
 }

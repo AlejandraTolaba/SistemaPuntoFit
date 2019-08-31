@@ -105,9 +105,8 @@ class InscripcionController extends Controller
                 $movimiento->idforma_de_pago= $request->get("idforma_de_pago");
                 $movimiento->fecha=$mytime;
                 $movimiento->save();
-                //return Redirect::back(); //para redireccionar 
     
-                $alumno= DB::table('alumno as a')
+                /* $alumno= DB::table('alumno as a')
                 ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
                 ->where('a.idalumno','=',$idalumno)->first();
                     
@@ -118,8 +117,9 @@ class InscripcionController extends Controller
                 ->where ('i.idalumno','=', $idalumno)
                 ->orderBy('fecha_inscripcion','desc')           
                 ->paginate(10);
-            
-                return view('alumno.inscripcion.index',["inscripciones"=>$inscripciones,"alumno"=>$alumno]);
+
+                return view('alumno.inscripcion.index',["inscripciones"=>$inscripciones,"alumno"=>$alumno]); */
+                return Redirect::to('alumno/inscripcion/'.$idalumno);
             }
             
         } else {
@@ -129,30 +129,6 @@ class InscripcionController extends Controller
         }
 
     }
-
-
-    public function updateCantidad($idinscripcion){
-        
-          $inscripcion= Inscripcion::find($idinscripcion);
-          $inscripcion->cantidad_clases = (int)$inscripcion->cantidad_clases - 1;
-          $mytime = Carbon::now();
-          $mytime2 = $inscripcion->fecha_vencimiento_inscripcion;
-          $diff = $mytime2->diffInDays($mytime)+1;
-          //dd($mytime);
-          //dd($diff);
-          $inscripcion->update();
-           if ($inscripcion->saldo>0){
-            flash("Recuerda que tienes un saldo de $". $inscripcion->saldo . ". Por favor no olvides cancelarlo")->error()->important();
-            }
-          if (($diff<=5) && ($diff>=1)){
-            flash("En ". $diff . " días se vence tu inscripción")->warning()->important();
-          }
-          if ($diff==1){
-            flash("Hoy se vence tu inscripción")->warning()->important();
-          }
-            flash("Te quedan ". $inscripcion->cantidad_clases . " clases")->important();
-          return Redirect::back();
-    } 
 
     public function buscar(){
         return view('asistencia.buscar');
@@ -257,25 +233,29 @@ class InscripcionController extends Controller
             $mytime= Carbon::now();
             $movimiento->fecha=$mytime;
             $movimiento->save();
-
-
-            $alumno= DB::table('alumno as a')
-            ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'))
-            ->where('a.idalumno','=',$inscripcion->idalumno)->first();
-                
-            $inscripciones=DB::table('inscripcion as i')
-            ->join('plan as p','i.idplan','=','p.idplan')
-            ->join('actividad as a','a.idactividad','=','i.idactividad')
-            ->select('a.nombre as actividad','p.nombre as plan','fecha_vencimiento_inscripcion','i.cantidad_clases as cantidad','i.saldo as saldo','i.estado','i.idinscripcion')
-            ->where ('i.idalumno','=', $inscripcion->idalumno)
-            ->orderBy('fecha_inscripcion','desc')
-            ->paginate(10);
             
             flash("Los cambios se realizaron con éxito")->success();
-
-            return view('alumno.inscripcion.index',["inscripciones"=>$inscripciones,"alumno"=>$alumno]);
-
+            return Redirect::to('alumno/inscripcion/'.$inscripcion->idalumno);
         } 
 
     }
+
+    public function mostrarFechasInscripcion($id)
+    {
+        $inscripcion=DB::table('inscripcion as i')
+        ->join('actividad as a','a.idactividad','=','i.idactividad')
+        ->join('alumno as al','al.idalumno','=','i.idalumno')
+        ->select(DB::raw('CONCAT(al.nombre," ",al.apellido) as nombrecompleto'),'a.nombre as actividad','fecha_inscripcion','fecha_vencimiento_inscripcion','idinscripcion','cantidad_clases')
+        ->where ('i.idinscripcion','=', $id)->first();
+        return view('alumno.inscripcion.mostrarFechasInscripcion',["inscripcion"=>$inscripcion]);    
+    }
+
+    public function actualizarFechaVencimiento(Request $request,$id)
+    {
+        $inscripcion= Inscripcion::find($id); 
+        $inscripcion->fecha_vencimiento_inscripcion=$request->get("fecha_vencimiento_inscripcion");
+        $inscripcion->update();
+        return Redirect::to('alumno/inscripcion/'.$inscripcion->idalumno);
+    }
+
 }
