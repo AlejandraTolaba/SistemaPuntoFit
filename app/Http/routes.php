@@ -103,8 +103,5 @@ Route::post('alumno/inscripcion/{idinscripcion}/mostrarFechasInscripcion','Inscr
 
 Route::get('alumno/fichaControlCorporal/{idficha}/edit','FichaControlController@edit');
 Route::patch('alumno/fichaControlCorporal/{idficha}','FichaControlController@update')->name('alumno.fichaControlCorporal.update');
-<<<<<<< HEAD
 
 Route::resource('producto','ProductoController');
-=======
->>>>>>> origin/Sprint5
