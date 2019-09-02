@@ -67,6 +67,13 @@
 					<div align="center">
 						{{$fichas->render()}}
 					</div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div align="right">
+                                <a class="btn btn-info" href="{{ URL::previous() }}" name="Volver">Volver</a>
+                            </div>
+                        </div>
+                    </div>
                     <script>
                         $(' div.alert ').not(' .alert-important').delay(3000).fadeOut(1000);
                     </script>

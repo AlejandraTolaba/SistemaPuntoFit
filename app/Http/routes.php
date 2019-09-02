@@ -100,3 +100,5 @@ Route::get('movimiento/reporte/{startDate}/{endDate}','MovimientoController@gene
 
 Route::get('alumno/fichaControlCorporal/{idficha}/edit','FichaControlController@edit');
 Route::patch('alumno/fichaControlCorporal/{idficha}','FichaControlController@update')->name('alumno.fichaControlCorporal.update');
+
+Route::resource('producto','ProductoController');

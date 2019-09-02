@@ -131,6 +131,12 @@
               </a>
             </li>
             <li class="treeview">
+            <a href="{{url('producto')}}">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Productos</span>
+              </a>
+            </li>
+            <li class="treeview">
             <a href="{{url('cumpleaños/')}}">
                 <i class="fa fa-birthday-cake"></i>
                 <span>Cumpleaños</span>

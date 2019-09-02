@@ -96,16 +96,8 @@ class FichaControlController extends Controller
         $ficha->grasa_viceral = $request->get('grasa_viceral');
         if ( $ficha->update())
         {
-            $alumno= DB::table('alumno as a')
-            ->select('a.idalumno', DB::raw('CONCAT(a.nombre," ",a.apellido) as nombrecompleto'),'foto')
-            ->where('a.idalumno','=',$ficha->idalumno)->first();
-            $fichas=DB::table('ficha_control as f')
-            ->select('idficha_control as idficha','fecha_registro as fecha','peso','edad_corporal','imc','grasa_corporal','imm','mb','grasa_viceral')
-            ->where ('f.idalumno','=', $ficha->idalumno)
-            ->orderBy('fecha_registro','desc')
-            ->paginate(10);
             flash("Los cambios se guardaron exitosamente")->success();
-            return view('alumno.fichaControlCorporal.index',["fichas"=>$fichas,"alumno"=>$alumno]);
+            return Redirect::to('alumno/fichaControlCorporal/'.$ficha->idalumno);
         } 
     }
 
