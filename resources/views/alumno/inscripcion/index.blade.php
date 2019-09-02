@@ -29,7 +29,7 @@
                                         <th>Clases restantes</th> 
                                         <th>Saldo</th>
                                         <th>Estado</th>
-                                        <th>Opción</th>
+                                        <th>Actualizar</th>
                                     </thead>
                                     @foreach ($inscripciones as $insc)
                                         <tr>
@@ -45,9 +45,14 @@
                                             <td>{{ $insc -> estado }}</td>
                                             <td>
                                             @if($insc->saldo>0)
-                                                <a href="{{URL::action('InscripcionController@mostrarInscripcion',$insc->idinscripcion)}}"><button name="Actualizar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Actualizar saldo</button></a>
+                                                <a href="{{URL::action('InscripcionController@mostrarInscripcion',$insc->idinscripcion)}}"><button name="Actualizar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Saldo</button></a>
                                             @else
-                                                <button name="Actualizar" class="btn btn-warning" disabled><i class="fa fa-pencil"></i> Actualizar saldo</button>
+                                                <button name="Actualizar" class="btn btn-warning" disabled><i class="fa fa-pencil"></i> Saldo</button>
+                                            @endif
+                                            @if($insc->estado=="Activa")
+                                                <a href="{{URL::action('InscripcionController@mostrarFechasInscripcion',$insc->idinscripcion)}}"><button name="ActualizarFechaV" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Fecha Vencimiento</button></a>
+                                            @else
+                                                <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>
                                             @endif
                                             <!-- <a href=""><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button></a>
                                             <a href=""><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-check"></i></button></a> -->
@@ -65,6 +70,13 @@
                     <script>
                         $(' div.alert ').not(' .alert-important').delay(3000).fadeOut(1000);
                     </script>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div align="right">
+                                <a class="btn btn-info" href="{{ URL::previous() }}" name="Volver">Volver</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
