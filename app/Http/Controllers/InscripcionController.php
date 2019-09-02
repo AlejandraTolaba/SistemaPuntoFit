@@ -255,6 +255,7 @@ class InscripcionController extends Controller
         $inscripcion= Inscripcion::find($id); 
         $inscripcion->fecha_vencimiento_inscripcion=$request->get("fecha_vencimiento_inscripcion");
         $inscripcion->update();
+        flash("Los cambios se realizaron con éxito")->success();
         return Redirect::to('alumno/inscripcion/'.$inscripcion->idalumno);
     }
 

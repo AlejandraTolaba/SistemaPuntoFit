@@ -125,6 +125,12 @@
               </a>
             </li>
             <li class="treeview">
+            <a href="{{url('venta/create')}}">
+                <i class="fa fa-plus"></i>
+                <span>Nueva Venta</span>
+              </a>
+            </li>
+            <li class="treeview">
             <a href="{{url('movimiento')}}">
                 <i class="fa fa-usd"></i>
                 <span>Movimiento</span>

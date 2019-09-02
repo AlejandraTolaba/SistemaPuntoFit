@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div align="right">
-								<a href='producto/create'><button class="btn btn-success"><i class="fa fa-user-plus"></i> Agregar</button></a>
+								<a href='producto/create'><button class="btn btn-success"><i class="fa fa-plus"></i> Agregar</button></a>
                             </div>
                             @include('producto.search')
                         </div>

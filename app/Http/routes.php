@@ -105,3 +105,6 @@ Route::get('alumno/fichaControlCorporal/{idficha}/edit','FichaControlController@
 Route::patch('alumno/fichaControlCorporal/{idficha}','FichaControlController@update')->name('alumno.fichaControlCorporal.update');
 
 Route::resource('producto','ProductoController');
+
+Route::get('venta/create','VentaController@create');
+Route::post('venta/create','VentaController@store');
