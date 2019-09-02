@@ -64,4 +64,17 @@ class ProductoTest extends TestCase
                 'precio' => 31.4,
                 ]);
     }
+
+    public function test_eliminar_producto()
+    {
+        $this->visit('producto')
+        ->see('Agua')
+        ->click('Eliminar')
+        ->see('Eliminar Producto')
+        ->press('Confirmar');
+        $this->dontSeeInDatabase('producto', ['nombre' => 'Agua']);
+
+
+    }
+
 }

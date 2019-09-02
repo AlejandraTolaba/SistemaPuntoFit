@@ -81,4 +81,12 @@ class ProductoController extends Controller
             return Redirect::to('producto/');
         } 
     }
+
+    public function destroy($id)
+	{
+		$producto = Producto::findOrFail($id);
+        $producto->delete();
+        flash("Se eliminó el producto")->success();
+		return Redirect::to('producto');
+	}
 }
