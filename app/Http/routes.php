@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 */
 
 Route::get('/', function () {
-    return view('asistencia.buscar');
+    return view('auth/login');
 });
 
 Route::resource('actividad','ActividadController');
@@ -108,3 +108,6 @@ Route::resource('producto','ProductoController');
 
 Route::get('venta/create','VentaController@create');
 Route::post('venta/create','VentaController@store');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
