@@ -98,6 +98,10 @@ return [
     |
     */
     'attributes' => [
+        'name' => 'Nombre',
+        'password' => 'Contraseña',
+        'password-confirm'=> 'Confirmar Contraseña',
+        'tipoUsuario'=>'tipo',
         'nombre' => 'Nombre',
         'nombrea' => 'Nombre (*)',
         'telefono_celular' => 'Teléfono - Celular (*)',
