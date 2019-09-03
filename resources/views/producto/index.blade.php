@@ -44,7 +44,7 @@
                                             @endif
                                             <td>
                                                 <a href="{{URL::action('ProductoController@edit',$p -> idproducto)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
-                                                <a href="" data-target="#modal-delete-{{$p->idproducto}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar"><i class="fa fa-remove"></i> Eliminar</button></a>
+                                                <a href="" id="Eliminar-{{$p->idproducto}}" data-target="#modal-delete-{{$p->idproducto}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar-{{$p->idproducto}}""><i class="fa fa-remove"></i> Eliminar</button></a>
                                             </td>    
                                         </tr>
                                         @include('producto.destroy')

@@ -15,7 +15,7 @@ role="dialog" tabindex="-1" id="modal-delete-{{$p->idproducto}}">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="submit" class="btn btn-primary" name="Confirmar">Confirmar</button>
+				<button type="submit" class="btn btn-primary" name="Confirmar-{{$p->idproducto}}">Confirmar</button>
 			</div>
 		</div>
 	</div>

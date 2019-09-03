@@ -116,7 +116,10 @@ class ActividadController extends Controller
 
     public function destroy($id)
     {
-        
+        $actividad=Actividad::findOrFail($id);
+    	$actividad->estado='Inactiva';
+    	$actividad->update();
+    	return Redirect::to('actividad/');
     }
 
     public function mostrarInscripcionesPorActividad($id){

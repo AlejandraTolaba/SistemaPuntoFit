@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-condensed table-hover text-center"> <!-- table-striped -->
+                                <table class="display table table-hover text-center" cellspacing="0" width="100%" style="border-bottom:2px solid #D8D8D8; border-top:2px solid #D8D8D8 "> <!-- table-striped -->
                                     <thead> <!-- style="background-color:#088A29" -->
                                         <th style="vertical-align:middle;">Nº</th>
                                         <th style="vertical-align:middle;">Nombre</th>
@@ -33,18 +33,28 @@
                                         <th style="vertical-align:middle;">Opciones</th>
                                     </thead>
                                     @foreach ($actividades as $act)
-                                        <tr>
+                                        @if ($act->estado!='Inactiva')
+                                            <tr role="row" class="odd">
+                                        @else
+                                            <tr role="row" class="odd danger text-danger">
+                                        @endif
                                             <td>{{ $act -> idactividad }}</td>
                                             <td>{{ $act -> nombre }}</td>
                                             <td>{{ $act -> estado }}</td>
                                             <td>{{ $act -> cantidad_i_activas }}</td>
                                             <td>
+                                                @if ($act->estado!='Inactiva')
                                                 <a href="{{URL::action('ActividadController@edit',$act -> idactividad)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
                                                 <a href="{{URL::action('ActividadController@mostrarInscripcionesPorActividad',$act -> idactividad)}}"><button name="MostrarInscripciones" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button></a>
-                                                <!-- <a href="" data-target="#modal-delete-{{$act->idactividad}}"data-toggle="modal"><button name="Eliminar" class="btn btn-danger"><i class="fa fa-remove"></i></button></a> -->
+                                                <a href="" id="Deshabilitar-{{$act->idactividad}}" data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Deshabilitar</button></a>
+                                                @else
+                                                    <button disabled name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button>
+                                                    <button disabled name="MostrarInscripciones" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button>
+                                                    <a href=""  data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button name="Habilitar" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
+                                                @endif
                                             </td>
                                         </tr>
-                                    
+                                        @include('actividad.destroy')
                                     @endforeach
                                 </table>
                             </div>

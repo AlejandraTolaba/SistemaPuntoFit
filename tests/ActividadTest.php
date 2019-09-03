@@ -111,5 +111,19 @@ class ActividadTest extends TestCase
                 ->see('Volver')
                 ->click('Volver');
     }
-
+    public function test_deshabilitar_actividad()
+    {
+        $this->visit('actividad')
+        ->see('1')
+        ->see('Zumba')
+        ->click("Deshabilitar-1")
+        ->see('Deshabilitar Actividad')
+        ->see('Confirme si desea deshabilitar la actividad')
+        ->press('Confirmar-1');
+        $this->seeInDatabase('actividad', [
+            'idactividad' => 1,
+            'nombre' => 'Zumba',
+            'estado' => 'Inactiva'
+            ]);
+    }
 }
