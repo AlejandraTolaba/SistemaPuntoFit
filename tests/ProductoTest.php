@@ -68,12 +68,12 @@ class ProductoTest extends TestCase
     public function test_eliminar_producto()
     {
         $this->visit('producto')
-        ->see('3')
+        ->see('8')
         ->see('Agua')
-        ->click('Eliminar-3')
+        ->click('Eliminar-8')
         ->see('Eliminar Producto')
         ->see('Confirme si desea eliminar el producto')
-        ->press('Confirmar-3');
+        ->press('Confirmar-8');
         $this->dontSeeInDatabase('producto', ['nombre' => 'Agua']);
     }
 

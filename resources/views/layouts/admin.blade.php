@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ADPuntoFit | www.puntofit.com</title>
+    <title>PUNTO FIT</title>
 
     <!-- jQuery 2.1.4 -->
     <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
@@ -56,31 +56,31 @@
               <!-- Messages: style can be found in dropdown.less-->
               
               <!-- User Account: style can be found in dropdown.less -->
-              <!-- <li class="dropdown user user-menu">
+              <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                  
                     <i class="fa fa-user"></i>
                     <span class="hidden-xs">Administrador</span>
                 </a>
-                <ul class="dropdown-menu"> -->
+                <ul class="dropdown-menu">
                   <!-- User image -->
-                  <!-- <li class="user-header">
+                  <li class="user-header">
                     
                     <p>
                       www.incanatoit.com - Desarrollando Software
                       <small>www.youtube.com/jcarlosad7</small>
                     </p>
-                  </li> -->
+                  </li>
                   
                   <!-- Menu Footer-->
-                  <!-- <li class="user-footer">
+                  <li class="user-footer">
                     
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Cerrar</a>
                     </div>
                   </li>
                 </ul>
-              </li> -->
+              </li>
               
             </ul>
           </div>
