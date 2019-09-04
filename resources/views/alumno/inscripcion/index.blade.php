@@ -54,11 +54,13 @@
                                             @else
                                                 <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>
                                             @endif
+                                            <a href="" id="Eliminar-{{$insc->idinscripcion}}" data-target="#modal-delete-{{$insc->idinscripcion}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar-{{$insc->idinscripcion}}"><i class="fa fa-remove"></i> Eliminar</button></a>
                                             <!-- <a href=""><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button></a>
                                             <a href=""><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-check"></i></button></a> -->
                                         
                                             </td>
                                         </tr>
+                                        @include('alumno.inscripcion.destroy')
                                     @endforeach
                                 </table>
                             </div>

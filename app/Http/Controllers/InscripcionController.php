@@ -263,5 +263,21 @@ class InscripcionController extends Controller
         flash("Los cambios se realizaron con éxito")->success();
         return Redirect::to('alumno/inscripcion/'.$inscripcion->idalumno);
     }
+    public function destroy($id)
+	{
+        $inscripcion= Inscripcion::findOrFail($id);
+        $idalumno=$inscripcion->idalumno;
+        $movimiento= new Movimiento();
+        $movimiento->concepto= "Eliminación de Inscripción N° ".$inscripcion->idinscripcion;
+        $movimiento->tipo="EGRESO";
+        $movimiento->monto=$inscripcion->monto;
+        $movimiento->idforma_de_pago= $inscripcion->idforma_de_pago;
+        $mytime= Carbon::now();
+        $movimiento->fecha=$mytime;
+        $movimiento->save();
+        $inscripcion->delete();
+        flash("Se eliminó la inscripción")->success();
+		return Redirect::to('alumno/inscripcion/'.$idalumno);
+	}
 
 }
