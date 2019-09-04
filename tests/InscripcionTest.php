@@ -168,4 +168,19 @@ class InscripcionTest extends TestCase
             ]);
 
     }
+    public function test_eliminar_inscripcion()
+    {
+        $this->visit('/alumno/inscripcion/2')
+        ->click('Eliminar-11')
+        ->see('Eliminar Inscripción')
+        ->see('Confirme si desea eliminar la inscripción')
+        ->press('Confirmar-11');
+        $this->seeInDatabase('movimiento_de_caja', [
+            'concepto'=>'Eliminación de Inscripción N° 11',
+            'tipo'=>'EGRESO' 
+        ]);
+        $this->dontSeeInDatabase('inscripcion', ['idinscripcion' => 11]);
+        $this->dontSeeInDatabase('asistencia', ['idinscripcion' => 11]);
+    }
+
 }

@@ -20,7 +20,7 @@ class ProfesorTest extends TestCase
     {
         $this->visit('profesor/create')
             ->see('Nuevo Profesor')
-            ->type('Maria', 'nombre' )
+            ->type('Maria', 'nombrea' )
             ->type('Ibarra', 'apellido' )
             ->type(35781731, 'dni' )
             ->type('2016-09-10', 'fecha_nacimiento' )
@@ -107,5 +107,20 @@ class ProfesorTest extends TestCase
             ->see('Email: mary@gmail.com', 'email' )
             ->see('Volver')
             ->click('Volver');
+    }
+    public function test_deshabilitar_profesor()
+    {
+        $this->visit('profesor')
+        ->see('Maria Ibarra')
+        ->click("Deshabilitar-5")
+        ->see('Deshabilitar Profesor')
+        ->see('Confirme si desea deshabilitar el profesor')
+        ->press('Confirmar-5');
+        $this->seeInDatabase('profesor', [
+            'idprofesor' => 5,
+            'nombre' => 'Maria',
+            'apellido' => 'Ibarra',
+            'estado' => 'Inactivo'
+            ]);
     }
 }

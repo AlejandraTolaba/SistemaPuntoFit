@@ -133,4 +133,11 @@ class ProfesorController extends Controller
         $profesor = Profesor::findOrFail($id);
 		return view("profesor.show",['profesor'=>$profesor]);
     } 
+    public function destroy($id)
+    {
+        $profesor = Profesor::findOrFail($id);
+    	$profesor->estado='Inactivo';
+    	$profesor->update();
+    	return Redirect::to('profesor/');
+    }
 }

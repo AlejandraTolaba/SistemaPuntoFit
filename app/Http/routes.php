@@ -111,3 +111,4 @@ Route::post('venta/create','VentaController@store');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::delete('alumno/inscripcion/{idalumno}','InscripcionController@destroy');
