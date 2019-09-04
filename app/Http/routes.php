@@ -111,3 +111,5 @@ Route::post('venta/create','VentaController@store');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::delete('fichaControlCorporal/{idficha}', 'FichaControlController@destroy');
