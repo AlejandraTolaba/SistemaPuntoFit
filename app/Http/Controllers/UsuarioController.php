@@ -8,6 +8,9 @@ use sisPuntoFit\Http\Requests;
 use DB;
 use sisPuntoFit\Http\Requests\UsuarioFormRequest;
 use sisPuntoFit\User;
+use sisPuntoFit\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 class UsuarioController extends Controller
 {
@@ -37,31 +40,33 @@ class UsuarioController extends Controller
 		$usuario->password = bcrypt($request->get('password'));
         $usuario->save();
         flash("El usuario se guardo exitosamente")->success();
-        return view('usuarios.create');
-		//return Redirect::to('usuarios');
+		return Redirect::to('usuarios');
 	}
-
-	public function edit($id)
-	{
-		return view("usuarios.edit",["usuario"=>User::findOrFail($id)]);
+	public function edit($id){
+		$user = User::findOrFail($id);
+		return view('usuarios.modificarContraseña',["user"=>$user]);
 	}
 	
-	public function update(UsuarioFormRequest $request, $id)
+	public function update(Request $request, $id)
 	{
-		$usuario = User::findOrFail($id);
-		$usuario->name = $request->get('name');
-		$usuario->email = $request->get('email');
-		$usuario->tipo = $request->get('tipoUsuario');
-		$usuario->password = bcrypt($request->get('password'));
-		$usuario->update();
-		return Redirect::to('usuarios');
+		$this->validate($request,[
+			'password'=>'required',
+            'newpassword'=> 'required|confirmed',
+		]);
+		$user = User::findOrFail($id);
+		$user->password = bcrypt($request->get('newpassword'));
+		$user->update();
+		flash("Su contraseña se ha cambiado correctamente ")->success()->important();
+		return view('usuarios.modificarContraseña',["user"=>$user]);
+		//return Redirect::to('asistencia');
 	}
 	
 	public function destroy($id)
 	{
-		$usuario = User::findOrFail($id);
-        $usuario->delete();
+		$user = User::findOrFail($id);
+        $user->delete();
         flash("Se eliminó usuario")->success();
 		return Redirect::to('usuarios');
 	}
+
 }
