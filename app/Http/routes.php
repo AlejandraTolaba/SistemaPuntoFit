@@ -113,4 +113,4 @@ Route::resource('usuarios','UsuarioController');
 Route::get('/home', 'HomeController@index');
 Route::delete('alumno/inscripcion/{idalumno}','InscripcionController@destroy');
 
-Route::delete('fichaControlCorporal/{idficha}', 'FichaControlController@destroy');
+Route::delete('alumno/fichaControlCorporal/{idalumno}', 'FichaControlController@destroy');

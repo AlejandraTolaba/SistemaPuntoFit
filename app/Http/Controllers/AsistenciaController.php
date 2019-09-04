@@ -16,6 +16,11 @@ use Illuminate\Support\Collection;
 
 class AsistenciaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $fecha=Carbon::now()->toDateString();
         $actividades = DB::table('actividad')->get();

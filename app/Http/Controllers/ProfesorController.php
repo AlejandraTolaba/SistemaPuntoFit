@@ -18,6 +18,11 @@ use Illuminate\Support\Collection;
 
 class ProfesorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	protected function random_string()
     {
         $key = '';

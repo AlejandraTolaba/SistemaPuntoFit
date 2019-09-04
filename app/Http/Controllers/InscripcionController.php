@@ -21,6 +21,11 @@ use DB;
 
 class InscripcionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($idalumno)
     {
         $alumno= DB::table('alumno as a')
