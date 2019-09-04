@@ -112,4 +112,4 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::delete('fichaControlCorporal/{idficha}', 'FichaControlController@destroy');
+Route::delete('alumno/fichaControlCorporal/{idalumno}', 'FichaControlController@destroy');

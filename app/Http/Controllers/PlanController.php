@@ -17,6 +17,10 @@ class PlanController extends Controller
     {
         return view('actividad/plan/create');
     } */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function store(PlanFormRequest $request)
     {

@@ -54,10 +54,7 @@
           <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}" style= "color:#fff;">Iniciar Sesión</a></li>
-                        <li><a href="{{ url('/register') }}" style= "color:#fff;">Registrarse</a></li>
-                    @else
+                    @if (Auth::user())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>

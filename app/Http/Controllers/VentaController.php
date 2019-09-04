@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class VentaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
 	{
         $productos = DB::table('producto as p')->where('stock','>',0)->get();

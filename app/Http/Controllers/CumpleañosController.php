@@ -14,6 +14,11 @@ use Illuminate\Support\Collection;
 
 class CumpleañosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function mostrarCumpleañeros()
     {
             $cumpleañerosA=DB::table('alumno')

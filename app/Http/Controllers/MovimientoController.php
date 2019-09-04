@@ -15,6 +15,11 @@ use Mpdf\Mpdf;
 
 class MovimientoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $desde=Carbon::now()->toDateString();
