@@ -39,7 +39,6 @@
                                         @endif
                                         <td ><img src="{{asset('imagenes/profesores/'.$p->foto)}}" alt="{{$p->foto}}" height="80px" width="80px" style="border:1px solid #b0b8b9;"></td>
                                             <td style="vertical-align:middle;">{{ $p -> profesor }}</td>
-                                            
                                             <td style="vertical-align:middle;">{{ $p -> dni }}</td>
 											<td style="vertical-align:middle;">{{ $p -> telefono_celular }}</td>
                                             <td style="vertical-align:middle;">{{ $p -> estado }}</td>
@@ -47,11 +46,15 @@
                                                 @if ($p->estado!='Inactivo')
                                                     <a href="{{URL::action('ProfesorController@show',$p->idprofesor)}}" ><button name="Visualizar" type="submit" class="btn btn-success"><i class="fa fa-user"></i> Visualizar</button></a>
                                                     <a href="{{URL::action('ProfesorController@edit',$p->idprofesor)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
-                                                    <a href="" id="Deshabilitar-{{$p->idprofesor}}" data-target="#modal-delete-{{$p->idprofesor}}" data-toggle="modal"><button class="btn btn-danger" name="Deshabilitar-{{$p->idprofesor}}""><i class="fa fa-remove"></i> Deshabilitar</button></a>
+                                                    @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                        <a href="" id="Deshabilitar-{{$p->idprofesor}}" data-target="#modal-delete-{{$p->idprofesor}}" data-toggle="modal"><button class="btn btn-danger" name="Deshabilitar-{{$p->idprofesor}}""><i class="fa fa-remove"></i> Deshabilitar</button></a>
+                                                    @endif
                                                 @else
                                                     <button name="Visualizar" type="submit" class="btn btn-success" disabled><i class="fa fa-user"></i> Visualizar</button></a>
                                                     <button name="Editar" type="submit" class="btn btn-warning" disabled><i class="fa fa-pencil"></i> Editar</button></a>
-                                                    <a href="" id="Habilitar-{{$p->idprofesor}}" data-target="#modal-habilitar-{{$p->idprofesor}}" data-toggle="modal"><button class="btn btn-success" name="Habilitar-{{$p->idprofesor}}""><i class="fa fa-check"></i> Habilitar</button></a>
+                                                    @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                        <a href="" id="Habilitar-{{$p->idprofesor}}" data-target="#modal-habilitar-{{$p->idprofesor}}" data-toggle="modal"><button class="btn btn-success" name="Habilitar-{{$p->idprofesor}}""><i class="fa fa-check"></i> Habilitar</button></a>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>

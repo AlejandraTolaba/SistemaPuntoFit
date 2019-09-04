@@ -46,11 +46,15 @@
                                                 @if ($act->estado!='Inactiva')
                                                 <a href="{{URL::action('ActividadController@edit',$act -> idactividad)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
                                                 <a href="{{URL::action('ActividadController@mostrarInscripcionesPorActividad',$act -> idactividad)}}"><button name="MostrarInscripciones" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button></a>
-                                                <a href="" id="Deshabilitar-{{$act->idactividad}}" data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Deshabilitar</button></a>
+                                                    @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                        <a href="" id="Deshabilitar-{{$act->idactividad}}" data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Deshabilitar</button></a>
+                                                    @endif
                                                 @else
                                                     <button disabled name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button>
                                                     <button disabled name="MostrarInscripciones" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button>
-                                                    <a href=""  data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button name="Habilitar" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
+                                                    @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                        <a href=""  id="Habilitar-{{$act->idactividad}}" data-target="#modal-habilitar-{{$act->idactividad}}" data-toggle="modal"><button name="Habilitar" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>

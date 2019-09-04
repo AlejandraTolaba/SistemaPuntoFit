@@ -52,9 +52,13 @@
                                             @if($insc->estado=="Activa")
                                                 <a href="{{URL::action('InscripcionController@mostrarFechasInscripcion',$insc->idinscripcion)}}"><button name="ActualizarFechaV" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Fecha Vencimiento</button></a>
                                             @else
-                                                <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>
+                                                @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                    <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>
+                                                @endif
                                             @endif
-                                            <a href="" id="Eliminar-{{$insc->idinscripcion}}" data-target="#modal-delete-{{$insc->idinscripcion}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar-{{$insc->idinscripcion}}"><i class="fa fa-remove"></i> Eliminar</button></a>
+                                            @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                <a href="" id="Eliminar-{{$insc->idinscripcion}}" data-target="#modal-delete-{{$insc->idinscripcion}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar-{{$insc->idinscripcion}}"><i class="fa fa-remove"></i> Eliminar</button></a>
+                                            @endif
                                             <!-- <a href=""><button name="Ver" type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button></a>
                                             <a href=""><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-check"></i></button></a> -->
                                         

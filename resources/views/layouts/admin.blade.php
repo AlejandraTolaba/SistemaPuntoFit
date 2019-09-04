@@ -130,7 +130,14 @@
                 <span>Cumpleaños</span>
               </a>
             </li>
-                       
+            @if(Auth::user()->tipo =='ADMINISTRADOR')
+              <li class="treeview">
+              <a href="{{url('usuarios/create')}}">
+                  <i class="fa fa-folder"></i>
+                  <span>Usuarios</span>
+                </a>
+              </li>
+            @endif        
             <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-calendar"></i> <span>Horarios</span>
