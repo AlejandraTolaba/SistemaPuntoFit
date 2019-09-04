@@ -109,7 +109,7 @@ Route::resource('producto','ProductoController');
 Route::get('venta/create','VentaController@create');
 Route::post('venta/create','VentaController@store');
 Route::auth();
-
+Route::resource('usuarios','UsuarioController');
 Route::get('/home', 'HomeController@index');
 Route::delete('alumno/inscripcion/{idalumno}','InscripcionController@destroy');
 
