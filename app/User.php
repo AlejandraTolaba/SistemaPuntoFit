@@ -3,7 +3,8 @@
 namespace sisPuntoFit;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Notifications\MyResetPassword;
 class User extends Authenticatable
 {
     /**

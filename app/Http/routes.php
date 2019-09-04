@@ -114,3 +114,6 @@ Route::get('/home', 'HomeController@index');
 Route::delete('alumno/inscripcion/{idalumno}','InscripcionController@destroy');
 
 Route::delete('alumno/fichaControlCorporal/{idalumno}', 'FichaControlController@destroy');
+
+Route::get('/actividad/{id}/habilitar','ActividadController@habilitar');
+Route::get('/profesor/{id}/habilitar','ProfesorController@habilitar');

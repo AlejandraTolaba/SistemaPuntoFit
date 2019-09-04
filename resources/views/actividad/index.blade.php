@@ -53,7 +53,7 @@
                                                     <button disabled name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button>
                                                     <button disabled name="MostrarInscripciones" type="submit" class="btn btn-info"><i class="fa fa-eye"></i> Inscripciones</button>
                                                     @if(Auth::user()->tipo =='ADMINISTRADOR')
-                                                        <a href=""  id="Habilitar-{{$act->idactividad}}" data-target="#modal-habilitar-{{$act->idactividad}}" data-toggle="modal"><button name="Habilitar" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
+                                                        <a href="{{URL::action('ActividadController@habilitar',$act -> idactividad)}}"><button name="Habilitar" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
                                                     @endif
                                                 @endif
                                             </td>

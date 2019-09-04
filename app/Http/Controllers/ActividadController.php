@@ -154,4 +154,12 @@ class ActividadController extends Controller
         ->get();
         return view('actividad.mostrarInscripciones',["inscripciones"=>$inscripciones,"actividad"=>$actividad,"desde"=>$desde,"hasta"=>$hasta]);
     }
+
+    public function habilitar($id)
+    {
+        $actividad= Actividad::find($id);
+        $actividad->estado='Activa';
+        $actividad->save();
+        return redirect()->route('actividad.index');
+    }
 }
