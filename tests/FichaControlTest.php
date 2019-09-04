@@ -82,4 +82,14 @@ class FichaControlTest extends TestCase
                 'grasa_viceral' => 21
                 ]);
     }
+
+    public function test_eliminar_ficha()
+    {
+        $this->visit('alumno/fichaControlCorporal/1')
+        ->click('Eliminar-2')
+        ->see('Eliminar Ficha de Control Corporal')
+        ->see('Confirme si desea eliminar la ficha')
+        ->press('Confirmar-2');
+        $this->dontSeeInDatabase('ficha_control', ['fecha_registro' => '2019-08-01']);
+    }
 }

@@ -57,8 +57,10 @@
                                             <td>{{ $ficha -> grasa_viceral }}</td>
                                             <td>
                                                 <a href="{{URL::action('FichaControlController@edit',$ficha->idficha)}}"><button name="Editar" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button></a>
+                                                <a href="" id="Eliminar-{{$ficha->idficha}}" data-target="#modal-delete-{{$ficha->idficha}}" data-toggle="modal"><button class="btn btn-danger" name="Eliminar-{{$ficha->idficha}}"><i class="fa fa-remove"></i> Eliminar</button></a>
                                             </td>
                                         </tr>
+                                        @include('alumno.fichaControlCorporal.destroy')
                                     @endforeach
                                 </table>
                             </div>

@@ -101,4 +101,12 @@ class FichaControlController extends Controller
         } 
     }
 
+    public function destroy($id)
+	{
+		$ficha = FichaControl::findOrFail($id);
+        $ficha->delete();
+        flash("Se eliminó la ficha")->success();
+		return Redirect::to('alumno/fichaControlCorporal/'.$ficha->idalumno);
+	}
+
 }
