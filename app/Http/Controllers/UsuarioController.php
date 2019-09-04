@@ -8,7 +8,6 @@ use sisPuntoFit\Http\Requests;
 use DB;
 use sisPuntoFit\Http\Requests\UsuarioFormRequest;
 use sisPuntoFit\User;
-use sisPuntoFit\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -50,11 +49,13 @@ class UsuarioController extends Controller
 	public function update(Request $request, $id)
 	{
 		$this->validate($request,[
-			'password'=>'required',
+			'password'=>'required|current_password',
             'newpassword'=> 'required|confirmed',
 		]);
-		$user = User::findOrFail($id);
-		$user->password = bcrypt($request->get('newpassword'));
+		//$user = User::findOrFail($id);
+		$user=\Auth::user();
+     	$user->password=bcrypt($request->newpassword);
+		//$user->password = bcrypt($request->get('newpassword'));
 		$user->update();
 		flash("Su contraseña se ha cambiado correctamente ")->success()->important();
 		return view('usuarios.modificarContraseña',["user"=>$user]);

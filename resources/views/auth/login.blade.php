@@ -53,6 +53,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Ingresar
                                 </button>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Olvidaste tu Contraseña?</a>
                             </div>
                         </div>
                     </form>
