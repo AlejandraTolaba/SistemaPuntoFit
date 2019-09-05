@@ -145,4 +145,12 @@ class ProfesorController extends Controller
     	$profesor->update();
     	return Redirect::to('profesor/');
     }
+
+    public function habilitar($id)
+    {
+        $profesor= Profesor::find($id);
+        $profesor->estado='Activo';
+        $profesor->save();
+        return redirect()->route('profesor.index');
+    }
 }

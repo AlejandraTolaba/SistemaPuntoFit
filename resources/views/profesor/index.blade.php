@@ -53,7 +53,7 @@
                                                     <button name="Visualizar" type="submit" class="btn btn-success" disabled><i class="fa fa-user"></i> Visualizar</button></a>
                                                     <button name="Editar" type="submit" class="btn btn-warning" disabled><i class="fa fa-pencil"></i> Editar</button></a>
                                                     @if(Auth::user()->tipo =='ADMINISTRADOR')
-                                                        <a href="" id="Habilitar-{{$p->idprofesor}}" data-target="#modal-habilitar-{{$p->idprofesor}}" data-toggle="modal"><button class="btn btn-success" name="Habilitar-{{$p->idprofesor}}""><i class="fa fa-check"></i> Habilitar</button></a>
+                                                        <a href="{{URL::action('ProfesorController@habilitar',$p -> idprofesor)}}" name="Habilitar" id="Habilitar"><button name="Habilitar-{{$p->idprofesor}}" id="Habilitar-{{$p->idprofesor}}" class="btn btn-success"><i class="fa fa-check"></i> Habilitar</button></a>
                                                     @endif
                                                 @endif
                                             </td>
