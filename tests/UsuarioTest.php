@@ -11,24 +11,7 @@ class UsuarioTest extends TestCase
      *
      * @return void
      */
-    use DatabaseMigrations;
-    public function test_agregar_usuario()
-    {
-        $this->visit('usuarios/create')
-        ->see('Nuevo Usuario')
-        ->type('Isabel' ,'name')
-        ->type('isabel@gmail.com' ,'email')
-        ->type('1234','password')
-        ->select('ADMINISTRADOR','tipoUsuario')
-        ->see('Guardar')
-        ->see('Cancelar')
-        ->press('Guardar');
-    $this->seeInDatabase('users', [
-        'name'=>'Isabel',
-        'email'=>'isabel@gmail.com',
-        'tipo'=>'ADMINISTRADOR'
-        ]);
-    }
+    use DatabaseTransactions;
 
     public function test_listar_usuarios(){
         $this->visit('usuarios')
@@ -36,22 +19,17 @@ class UsuarioTest extends TestCase
             ->see('Nombre')
             ->see('E-Mail')
             ->see('tipo')
-            ->seeInElement('table', 'Isabel');
+            ->seeInElement('table', 'Mirian Aldana Quispe');
     }
 
-    public function test_modificar_contraseña()
-    {
-    }
 
     public function test_eliminar_usuario()
     {
-        $this->visit('producto')
-        ->see('8')
-        ->see('Agua')
-        ->click('Eliminar-8')
-        ->see('Eliminar Producto')
-        ->see('Confirme si desea eliminar el producto')
-        ->press('Confirmar-8');
-        $this->dontSeeInDatabase('producto', ['nombre' => 'Agua']);
+        $this->visit('usuarios')
+        ->click('Eliminar-3')
+        ->see('Eliminar Usuario')
+        ->see('Confirme si desea eliminar el usuario')
+        ->press('Confirmar-3');
+        $this->dontSeeInDatabase('users', ['id' => 3]);
     }
 }

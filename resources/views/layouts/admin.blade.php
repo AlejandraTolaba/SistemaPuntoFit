@@ -115,7 +115,7 @@
             <li class="treeview">
             <a href="{{url('movimiento')}}">
                 <i class="fa fa-usd"></i>
-                <span>Movimiento</span>
+                <span>Movimientos de caja</span>
               </a>
             </li>
             <li class="treeview">

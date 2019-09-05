@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('contenido')
     <div class="row">
-    <div class="col-lg-10 col-md-offset-1">
+    <div class="col-lg-12">
         @include('flash::message')
     </div>
-        <div class="col-lg-10 col-md-offset-1">
+        <div class="col-lg-12">
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h2 class="box-tittle">Listado de Profesores</h2>

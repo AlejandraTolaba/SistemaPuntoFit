@@ -50,10 +50,12 @@
                                                 <button name="Actualizar" class="btn btn-warning" disabled><i class="fa fa-pencil"></i> Saldo</button>
                                             @endif
                                             @if($insc->estado=="Activa")
-                                                <a href="{{URL::action('InscripcionController@mostrarFechasInscripcion',$insc->idinscripcion)}}"><button name="ActualizarFechaV" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Fecha Vencimiento</button></a>
+                                                @if(Auth::user()->tipo =='ADMINISTRADOR')
+                                                    <a href="{{URL::action('InscripcionController@mostrarFechasInscripcion',$insc->idinscripcion)}}"><button name="ActualizarFechaV" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Fecha Vencimiento</button></a>
+                                                @endif
                                             @else
                                                 @if(Auth::user()->tipo =='ADMINISTRADOR')
-                                                    <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>
+                                                    <button name="ActualizarFechaV" class="btn btn-primary" disabled><i class="fa fa-pencil"></i> Fecha Vencimiento</button>                           
                                                 @endif
                                             @endif
                                             @if(Auth::user()->tipo =='ADMINISTRADOR')

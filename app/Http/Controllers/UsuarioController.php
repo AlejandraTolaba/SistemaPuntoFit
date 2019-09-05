@@ -9,6 +9,8 @@ use DB;
 use sisPuntoFit\Http\Requests\UsuarioFormRequest;
 use sisPuntoFit\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsuarioController extends Controller
@@ -49,17 +51,19 @@ class UsuarioController extends Controller
 	public function update(Request $request, $id)
 	{
 		$this->validate($request,[
-			'password'=>'required|current_password',
+			'password'=>'required',
             'newpassword'=> 'required|confirmed',
 		]);
-		//$user = User::findOrFail($id);
-		$user=\Auth::user();
-     	$user->password=bcrypt($request->newpassword);
-		//$user->password = bcrypt($request->get('newpassword'));
-		$user->update();
-		flash("Su contraseña se ha cambiado correctamente ")->success()->important();
-		return view('usuarios.modificarContraseña',["user"=>$user]);
-		//return Redirect::to('asistencia');
+		if(Hash::check($request->password,Auth::user()->password)){
+			$user=\Auth::user();
+			$user->password=bcrypt($request->newpassword);
+		   $user->update();
+		   flash("Su contraseña se ha cambiado correctamente ")->success()->important();
+		   return view('usuarios.modificarContraseña',["user"=>$user]);
+		} else {
+			flash("La contraseña no coincide con la actual")->error()->important();
+			return Redirect::back();
+		}
 	}
 	
 	public function destroy($id)
