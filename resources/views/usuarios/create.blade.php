@@ -15,6 +15,7 @@
                         {{ csrf_field() }} -->
                     {!! Form::open(array('url'=>'usuarios','method'=>'POST','autocomplete'=>'off')) !!}
 					{{Form::token()}}
+                    {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">

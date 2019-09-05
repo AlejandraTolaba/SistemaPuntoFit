@@ -101,6 +101,8 @@ return [
         'name' => 'Nombre',
         'password' => 'Contraseña',
         'password-confirm'=> 'Confirmar Contraseña',
+        'newpassword'=>'Nueva contraseña',
+        'newpassword_confirmation'=>'Confirmar contraseña',
         'tipoUsuario'=>'tipo',
         'nombre' => 'Nombre',
         'nombrea' => 'Nombre (*)',

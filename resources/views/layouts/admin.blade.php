@@ -59,8 +59,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{URL::action('UsuarioController@edit',Auth::user()->id)}}"><i class="fa fa-btn fa-pencil"></i>Modificar Contraseña</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Cerrar Sesión</a></li>
                             </ul>
                         </li>
@@ -132,7 +132,7 @@
             </li>
             @if(Auth::user()->tipo =='ADMINISTRADOR')
               <li class="treeview">
-              <a href="{{url('usuarios/create')}}">
+              <a href="{{url('usuarios')}}">
                   <i class="fa fa-folder"></i>
                   <span>Usuarios</span>
                 </a>
