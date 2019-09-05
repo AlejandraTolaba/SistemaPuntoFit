@@ -110,14 +110,19 @@
 								alert("La cantidad es superior al stock");
 							}
 						}
+						function limpiarCantidad(){
+							cantidad=$("#cantidad").val('1');
+						}
 						$("#Guardar").click(function (e){
 							e.preventDefault();
 							var producto = $('#producto').val();
 							var idforma_de_pago = $('#idforma_de_pago').val();
 							var cantidad = $('#cantidad').val();
 							var total = $('#total').val();
-							console.log(producto+","+cantidad+","+total);
-							$.ajax({
+							var stock=$("#stock").val();
+							//console.log(producto+","+cantidad+","+total);
+							if(parseInt(cantidad)<=parseInt(stock)){
+								$.ajax({
 								type: "post",
 								data: {
 									producto: producto,
@@ -130,6 +135,10 @@
 								}, fail: function(){
 								}
 							});
+							} else {
+								alert("La cantidad es superior al stock");
+							}
+							
 							
 							
 						});
@@ -144,6 +153,7 @@
 		datos_producto=document.getElementById('producto').value.split('_');
 		document.getElementById('precio').value = datos_producto[1];
 		document.getElementById('stock').value = datos_producto[2];
+		limpiarCantidad();
 		calcular_total();
 	}
 </script>
