@@ -58,13 +58,13 @@ class AsistenciaController extends Controller
             ->where('fecha','=',$fecha)
             ->orderBy('alu')
             ->paginate(10);
-            $cantidad = DB::table('asistencia as a')
+            /* $cantidad = DB::table('asistencia as a')
             ->join('inscripcion as i','a.idinscripcion','=','i.idinscripcion')
             ->join('actividad as ac','ac.idactividad','=','i.idactividad')
             ->join('alumno as al','al.idalumno','=','i.idalumno')
             ->select(DB::raw('COUNT(idasistencia) as cant'))
             ->where('fecha','=', $fecha)
-            ->first();
+            ->first(); */
         }
         else{
         $asistencias=DB::table('asistencia as a')
@@ -76,15 +76,15 @@ class AsistenciaController extends Controller
         ->where('fecha','=',$fecha)
         ->where('ac.idactividad','=',$id)
         ->paginate(20);
-        $cantidad = DB::table('asistencia as a')
+        /* $cantidad = DB::table('asistencia as a')
         ->join('inscripcion as i','a.idinscripcion','=','i.idinscripcion')
         ->join('actividad as ac','ac.idactividad','=','i.idactividad')
         ->join('alumno as al','al.idalumno','=','i.idalumno')
         ->select(DB::raw('COUNT(idasistencia) as cant'))
         ->where ('fecha','=', $fecha)
         ->where('ac.idactividad','=',$id)
-        ->first();
+        ->first(); */
         }
-        return view('asistencia.index',["actividades"=>$actividades, "asistencias"=>$asistencias, "fecha"=>$fecha, "cantidad"=>$cantidad, "id"=>$id]);
+        return view('asistencia.index',["actividades"=>$actividades, "asistencias"=>$asistencias, "fecha"=>$fecha, "id"=>$id]); /* "cantidad"=>$cantidad */
     }
 }

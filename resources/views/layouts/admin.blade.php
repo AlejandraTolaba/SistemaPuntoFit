@@ -204,9 +204,6 @@
 
 
       <footer class="main-footer no-print">
-        <div class="pull-right hidden-xs">
-          <b>Desarrollado por Mirian-Alejandra</b> 
-        </div>
         <strong>Copyright &copy; 2019. Todos los derechos reservados</strong> 
       </footer>
 

@@ -14,7 +14,7 @@
                     @endif
                     <div class="row">
                         <div class="col-lg-12" align="right">
-                            <a href="{{route('movimientoReporte',[$desde,$hasta])}}"><button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Generar PDF</button></a>
+                            <a href="{{route('movimientoReporte',[$desde,$hasta])}}" target="_blank"><button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Generar PDF</button></a>
                             <a href='movimiento/create'><button class="btn btn-success"><i class="fa fa-plus"></i> Agregar</button></a>
                         </div>
                     </div>

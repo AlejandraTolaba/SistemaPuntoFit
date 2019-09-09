@@ -124,14 +124,14 @@ class ProfesorTest extends TestCase
             ]);
     }
 
-    /* public function test_habilitar_profesor()
+    public function test_habilitar_profesor()
     {
         $this->visit('profesor')
-        ->see('Maria Ibarra')
+        ->see('Mari Ibarra')
         ->press('Habilitar-4');
         $this->seeInDatabase('profesor', [
             'idprofesor' => 4,
             'estado' => 'Activo'
             ]);
-    } */
+    }
 }

@@ -91,7 +91,7 @@
                             <button class="btn btn-primary" id="filtrar" name="filtrar"><i class="fa fa-calendar"></i></button>
                         </div>
                         <div class="col-md-6" align="right">
-                            <h4 name="cant"> <b>Total: <input type ="number" name="cantidad" id="cantidad" value="{{$cantidad->cant}}" style="border:none; width:30%" readonly></b></h4>
+                            <h4 name="cant"> <b>Total: <input type ="number" name="cantidad" id="cantidad" value="{{$asistencias->total()}}" style="border:none; width:30%" readonly></b></h4>
                         </div>
                     </div>
                     <br>
