@@ -27,19 +27,33 @@
                                     <h4 name="fecha"><b>Fecha: <?php $fecha = new DateTime($inscripcion->fecha_inscripcion); echo $fecha->format('d-m-Y');?></b></h4>
                                     <h4 name="formadepago"><b>Forma de pago: </b>{{$inscripcion->forma}}</h4>
                                     <h4 name="monto"><b>Monto pagado: </b>${{$inscripcion->monto}}</h4>
-                                    <h4 name="saldo" style="color:#CB4335;"><b>Saldo: </b>${{$inscripcion->saldo}}</h4>
+                                    <div class="row" >
+                                        <div class="col" >
+                                            <div class="form-group">
+                                            <h4 for="monto_movimiento" class="col-sm-6" style="color:#CB4335;"><b>Monto a pagar:</b></h4>
+                                            <div class="input-group">	
+                                                <span class="input-group-addon" id="basic-addon2" style="color:#CB4335;"><b>$</b></span>
+                                                <input type="number" style="width:100%; color:#CB4335;" step ="any" class="form-control" id="monto_movimiento" name="monto_movimiento" autocomplete="off" value={{$inscripcion->saldo}} readonly> 
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <!-- <div class="input-group">	
+                                        <span class="input-group-addon" id="basic-addon2"><b>Saldo a pagar $</b></span>
+                                        <input type="number" style="width:80%;" step ="any" class="form-control" id="monto_movimiento" name="monto_movimiento" autocomplete="off" value={{$inscripcion->saldo}} readonly> 
+                                    </div> -->
+                                    <!-- <h4 name="saldo" style="color:#CB4335;"><b>Saldo: </b>${{$inscripcion->saldo}}</h4> -->
                                 </div>
                             </div>
-                            <div class="row" >
+                            <!-- <div class="row" >
                                 <div class="col" >
                                     <div class="form-group">
-                                    <h4 for="monto_movimiento" class="col-sm-3"><b>Monto a pagar:</b></h4>
+                                    <h4 for="monto_movimiento" class="col-sm-3"><b>Saldo a pagar:</b></h4>
                                     <div class="input-group">	
                                         <span class="input-group-addon" id="basic-addon2"><b>$</b></span>
-                                        <input type:"number" style="width:80%;" step ="any" class="form-control" id="monto_movimiento" name="monto_movimiento" autocomplete="off" required> 
+                                        <input type="number" style="width:80%;" step ="any" class="form-control" id="monto_movimiento" name="monto_movimiento" autocomplete="off" value={{$inscripcion->saldo}} readonly> 
                                     </div> 
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
                         
