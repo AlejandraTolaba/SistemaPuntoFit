@@ -158,7 +158,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Styde\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -208,7 +208,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Flash' => Laracasts\Flash\Flash::class,
-        'PDF'=>Barryvdh\DomPDF\Facade::class,
+        //'PDF'=>Barryvdh\DomPDF\Facade::class,
 
     ],
 
